@@ -157,6 +157,35 @@ function clone (obj) {
 }
 
 
+function format_response (data, outcome, action) {
+    let formatted_response = {};
+
+    action = action || 'GET_ONE';
+    outcome = outcome || 'SUCCESS';
+
+    if (outcome === 'SUCCESS') {
+        formatted_response = {
+            data: {
+                items: []
+            }
+        };
+
+        switch (action) {
+            case 'GET_ONE':
+                formatted_response.data.items.push(data);
+                break;
+
+            case 'GET_MANY':
+            case 'GET_ONE_TO_MANY':
+                formatted_response.data.items = data;
+                break;
+
+        }
+    }
+
+    return formatted_response;
+}
+
 
 module.exports = {
     hash,
@@ -167,5 +196,6 @@ module.exports = {
     caps_first,
     split,
     get_log_stream,
-    clone
+    clone,
+    format_response
 };
