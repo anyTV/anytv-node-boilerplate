@@ -11,7 +11,7 @@ module.exports = (router) => {
 
     router.get('/user/:id', __.user.get_user);
 
-    router.all('*', function (req, res) {
+    router.all('*', (req, res) => {
         res.status(404)
             .send({message: 'Nothing to do here.'});
     });
