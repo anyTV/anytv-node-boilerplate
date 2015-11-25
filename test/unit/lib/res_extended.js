@@ -3,6 +3,7 @@
 
 const httpMocks = require('node-mocks-http');
 const should = require('chai').should();
+const expect = require('chai').expect();
 const extended = require(process.cwd() + '/lib/res_extended');
 
 describe('lib/res_extend', () => {
@@ -38,6 +39,21 @@ describe('lib/res_extend', () => {
 
     });
 
+    it('res.limit(limit) limit should be type number', (done) => {
+        let res = httpMocks.createResponse();
+        let req = httpMocks.createRequest({});
+        let extended_middleware = extended();
+
+        extended_middleware(req, res, () => {
+            (() => {
+                res.limit('Limit must be type number.');
+            }).should.throw(Error, 'Limit must be type number.');
+
+            done();
+        });
+
+    });
+
     it('should add method total to res', (done) => {
         let res = httpMocks.createResponse();
         let req = httpMocks.createRequest({});
@@ -64,6 +80,21 @@ describe('lib/res_extend', () => {
             should.exist(response.data.total);
             response.data.total.should.be.a('number');
             response.data.total.should.be.equal(total);
+
+            done();
+        });
+
+    });
+
+    it('res.total(total) total should be type number', (done) => {
+        let res = httpMocks.createResponse();
+        let req = httpMocks.createRequest({});
+        let extended_middleware = extended();
+
+        extended_middleware(req, res, () => {
+            (() => {
+                res.total('total must be type number.');
+            }).should.throw(Error, 'Total must be type number.');
 
             done();
         });
@@ -141,6 +172,58 @@ describe('lib/res_extend', () => {
         });
     });
 
+    it('res.add_error(key, value) key should be type string', (done) => {
+        let res = httpMocks.createResponse();
+        let req = httpMocks.createRequest({});
+        let extended_middleware = extended();
+
+        extended_middleware(req, res, () => {
+            (() => {
+                res.add_error({}, {});
+            }).should.throw(Error, 'Error key should be type string.')
+            done();
+        });
+    });
+
+    it('res.add_error(key, value) value should be type object', (done) => {
+        let res = httpMocks.createResponse();
+        let req = httpMocks.createRequest({});
+        let extended_middleware = extended();
+
+        extended_middleware(req, res, () => {
+            (() => {
+                res.add_error('1', 'not an object');
+            }).should.throw(Error, 'Error must be type object.')
+            done();
+        });
+    });
+
+    it('res.add_error(key, value) value should have property code', (done) => {
+        let res = httpMocks.createResponse();
+        let req = httpMocks.createRequest({});
+        let extended_middleware = extended();
+
+        extended_middleware(req, res, () => {
+            (() => {
+                res.add_error('1', {});
+            }).should.throw(Error, 'Error must have property code.');
+            done();
+        });
+    });
+
+    it('res.add_error(key, value) value should have property message', (done) => {
+        let res = httpMocks.createResponse();
+        let req = httpMocks.createRequest({});
+        let extended_middleware = extended();
+
+        extended_middleware(req, res, () => {
+            (() => {
+                res.add_error('1', {code: '3RR0RC0D3'});
+            }).should.throw(Error, 'Error must have property message.');
+            done();
+        });
+    });
+
     it('should add method meta to res', (done) => {
         let res = httpMocks.createResponse();
         let req = httpMocks.createRequest({});
@@ -167,6 +250,34 @@ describe('lib/res_extend', () => {
             should.exist(response.meta);
             response.meta.should.be.a('object');
             response.meta.should.be.deep.equal(meta);
+
+            done();
+        });
+    });
+
+    it('res.meta(meta) meta should be type object', (done) => {
+        let res = httpMocks.createResponse();
+        let req = httpMocks.createRequest({});
+        let extended_middleware = extended();
+
+        extended_middleware(req, res, () => {
+            (() => {
+                res.meta('some string that is not object')
+            }).should.throw(Error, 'Meta must be type object.')
+
+            done();
+        });
+    });
+
+    it('res.meta(meta) meta should have property code', (done) => {
+        let res = httpMocks.createResponse();
+        let req = httpMocks.createRequest({});
+        let extended_middleware = extended();
+
+        extended_middleware(req, res, () => {
+            (() => {
+                res.meta({not_code: 'should throw error'})
+            }).should.throw(Error, 'Meta must have property code.')
 
             done();
         });
@@ -269,6 +380,20 @@ describe('lib/res_extend', () => {
         });
     });
 
+    it('res.data should be type object', (done) => {
+        let res = httpMocks.createResponse();
+        let req = httpMocks.createRequest({});
+        let extended_middleware = extended();
+
+        extended_middleware(req, res, () => {
+            (() => {
+                res.data('key');
+            }).should.throw(Error, 'Data must be type object.');
+
+            done();
+        });
+    });
+
     it('should add method add_data to res', (done) => {
         let res = httpMocks.createResponse();
         let req = httpMocks.createRequest({});
@@ -318,6 +443,20 @@ describe('lib/res_extend', () => {
         });
     });
 
+
+    it('res.add_data(key, value) key should be type string', (done) => {
+        let res = httpMocks.createResponse();
+        let req = httpMocks.createRequest({});
+        let extended_middleware = extended();
+
+        extended_middleware(req, res, () => {
+            (() => {
+                res.add_data({}, {id: 1});
+            }).should.throw(Error, 'Key must be type string.');
+
+            done();
+        });
+    });
 
     it('res.add_data should accept (key, item)', (done) => {
         let res = httpMocks.createResponse();
@@ -390,6 +529,21 @@ describe('lib/res_extend', () => {
             done();
         });
     });
+
+    it('res.items(items) items should be type array', (done) => {
+        let res = httpMocks.createResponse();
+        let req = httpMocks.createRequest({});
+        let extended_middleware = extended();
+
+        extended_middleware(req, res, () => {
+            (() => {
+                res.items('some string');
+            }).should.throw(Error, 'Items must be type array.');
+
+            done();
+        });
+    });
+
 
 
     it('should add method add_item to res', (done) => {
