@@ -33,10 +33,13 @@ exports.get_user = (req, res, next) => {
         }
 
         if (!result.length) {
-            return res.warn(404, {message: 'User not found'});
+            return res.status(404)
+                .add_error({code: 'USER404', message: 'User not found'})
+                .send();
         }
 
-        res.send(result[0]);
+        res.add_item(result[0])
+            .send();
     }
 
     start();
