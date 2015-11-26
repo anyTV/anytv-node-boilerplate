@@ -34,11 +34,11 @@ exports.get_user = (req, res, next) => {
 
         if (!result.length) {
             return res.status(404)
-                .add_error({code: 'USER404', message: 'User not found'})
+                .error({code: 'USER404', message: 'User not found'})
                 .send();
         }
 
-        res.add_item(result[0])
+        res.item(result[0])
             .send();
     }
 

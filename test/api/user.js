@@ -17,8 +17,7 @@ describe('User', () => {
             .end((err, res) => {
                 should.not.exist(err);
 
-                let body = JSON.parse(res.text);
-                body.data.items.length.should.be.equal(1);
+                JSON.parse(res.text).data.items.length.should.be.equal(1);
 
                 done();
             });
@@ -37,10 +36,9 @@ describe('User', () => {
     it('should contain errors', (done) => {
         api.get('/user/wrong_id')
             .end((err, res) => {
-                should.not.exist(err);
 
-                let body = JSON.parse(res.text);
-                should.exist(body.errors);
+                should.not.exist(err);
+                should.exist(JSON.parse(res.text));
 
                 done();
             });
