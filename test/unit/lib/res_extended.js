@@ -29,7 +29,7 @@ describe('lib/res_extend', () => {
             let limit = 1;
             res.limit(limit).send();
 
-            let response = JSON.parse(res._getData());
+            let response = res._getData();
 
             should.exist(response.data.limit);
             response.data.limit.should.be.a('number');
@@ -76,7 +76,7 @@ describe('lib/res_extend', () => {
             let total = 1;
             res.total(total).send();
 
-            let response = JSON.parse(res._getData());
+            let response = res._getData();
 
             should.exist(response.data.total);
             response.data.total.should.be.a('number');
@@ -131,7 +131,7 @@ describe('lib/res_extend', () => {
 
             res.send();
 
-            let response = JSON.parse(res._getData());
+            let response = res._getData();
 
             should.exist(response.errors);
             response.errors.should.be.a('array');
@@ -162,7 +162,7 @@ describe('lib/res_extend', () => {
 
             res.send();
 
-            let response = JSON.parse(res._getData());
+            let response = res._getData();
 
             should.exist(response.errors[key]);
             response.errors[key].should.be.a('array');
@@ -245,7 +245,7 @@ describe('lib/res_extend', () => {
             let meta = {code: '123'};
             res.meta(meta).send();
 
-            let response = JSON.parse(res._getData());
+            let response = res._getData();
 
             should.exist(response.meta);
             response.meta.should.be.a('object');
@@ -321,7 +321,7 @@ describe('lib/res_extend', () => {
             let error = 'Error warning.';
             res.items([{id: 1}, {id: 2}]).send();
 
-            let response = JSON.parse(res._getData());
+            let response = res._getData();
 
             done();
         });
@@ -370,7 +370,7 @@ describe('lib/res_extend', () => {
 
             res.data({members}).send();
 
-            let response = JSON.parse(res._getData());
+            let response = res._getData();
 
             should.exist(response.data.members);
             response.data.members.should.be.a('array');
@@ -432,7 +432,7 @@ describe('lib/res_extend', () => {
                 .datum(data)
                 .send();
 
-            let response = JSON.parse(res._getData());
+            let response = res._getData();
 
             should.exist(response.data.members);
             response.data.members.should.be.a('array');
@@ -479,7 +479,7 @@ describe('lib/res_extend', () => {
                 .datum(key, member)
                 .send();
 
-            let response = JSON.parse(res._getData());
+            let response = res._getData();
 
             should.exist(response.data.members);
             response.data.members.should.be.a('array');
@@ -516,7 +516,7 @@ describe('lib/res_extend', () => {
             res.items(items)
                 .send();
 
-            let response = JSON.parse(res._getData());
+            let response = res._getData();
 
             should.exist(response.data.items);
             response.data.items.should.be.a('array');
@@ -574,7 +574,7 @@ describe('lib/res_extend', () => {
                 .item(item)
                 .send();
 
-            let response = JSON.parse(res._getData());
+            let response = res._getData();
 
             should.exist(response.data.items);
             response.data.items.should.be.a('array');
