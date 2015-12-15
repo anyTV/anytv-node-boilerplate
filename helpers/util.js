@@ -34,7 +34,7 @@ function get_data (sample, source, ref) {
         const source_type = typeof source[source_prop];
         const type = typeof sample[prop];
 
-        if ((source_type === 'undefined' && prop[0] !== '_') || (source_type === 'string' && !source[source_prop])) {
+        if ((source_type === 'undefined' || (source_type === 'string' && !source[source_prop])) && prop[0] !== '_') {
             return new Error(ref + ' is missing');
         }
 
