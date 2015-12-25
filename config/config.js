@@ -6,7 +6,7 @@ const path = require('path');
 const config = {
     APP_NAME: 'anyTV Node Boilerplate',
 
-    PORT: 6969,
+    PORT: 5000,
 
     CORS:  {
         allowed_headers: 'Access-Token, X-Requested-With, Content-Type, Accept',

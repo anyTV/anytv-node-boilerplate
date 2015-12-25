@@ -35,8 +35,7 @@ This project **strictly** uses the [company's JS conventions](https://github.com
 
 4. Run this commands :
   ```sh
-  sudo npm i -g forever
-  sudo npm i -g nodemon
+  sudo npm install -g forever
   sudo npm start
   ```
 
