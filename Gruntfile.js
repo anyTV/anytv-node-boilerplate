@@ -1,7 +1,7 @@
 'use strict';
 
-module.exports = function (grunt) {
 
+module.exports = (grunt) => {
 
     grunt.initConfig({
         jshint: {
@@ -18,6 +18,7 @@ module.exports = function (grunt) {
                 jshintrc: '.jshintrc'
             }
         },
+
         mochaTest: {
             test: {
                 src: ['test/**/*.js'],
@@ -27,6 +28,7 @@ module.exports = function (grunt) {
                 }
             }
         },
+
         express: {
             dev: {
                 options: {
@@ -34,6 +36,7 @@ module.exports = function (grunt) {
                 }
             }
         },
+
         watch: {
           express: {
             files: ['<%= jshint.files %>'],
