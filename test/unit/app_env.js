@@ -1,4 +1,5 @@
-const should = require('chai').should();
+'use strict';
+
 const config = require(process.cwd() + '/config/config');
 
 describe('App', () => {
