@@ -21,10 +21,10 @@
     "winston": "^2.1.0"
   },
   "scripts": {
-    "start": "forever --watch server.js",
-    "test": "make test",
+    "start": "grunt",
+    "test": "grunt test",
     "coverage": "unset NODE_ENV && istanbul cover _mocha -- --recursive -R spec -t 5000 -s 100",
-    "test-dev": "unset NODE_ENV && mocha --watch --recursive -R spec -t 5000 -s 100",
+    "test-dev": "grunt test-watch",
     "docs": "apidoc -i controllers -o apidoc/"
   },
   "repository": {
