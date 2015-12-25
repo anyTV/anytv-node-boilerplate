@@ -35,8 +35,9 @@ This project **strictly** uses the [company's JS conventions](https://github.com
 
 4. Run this commands :
   ```sh
-  sudo npm install -g forever
-  sudo npm start
+  npm install -g grunt-cli
+  npm install
+  grunt
   ```
 
 5. check http://localhost
