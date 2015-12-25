@@ -3,7 +3,6 @@
 
 const httpMocks = require('node-mocks-http');
 const should = require('chai').should();
-const expect = require('chai').expect();
 const extended = require(process.cwd() + '/lib/res_extended');
 
 describe('lib/res_extend', () => {
@@ -138,7 +137,7 @@ describe('lib/res_extend', () => {
 
             errs.forEach(function(err) {
                 response.errors.should.include(err);
-            })
+            });
 
             done();
         });
@@ -180,7 +179,7 @@ describe('lib/res_extend', () => {
         extended_middleware(req, res, () => {
             (() => {
                 res.error({}, {});
-            }).should.throw(Error, 'Error key should be type string.')
+            }).should.throw(Error, 'Error key should be type string.');
             done();
         });
     });
@@ -193,7 +192,7 @@ describe('lib/res_extend', () => {
         extended_middleware(req, res, () => {
             (() => {
                 res.error('1', 'not an object');
-            }).should.throw(Error, 'Error must be type object.')
+            }).should.throw(Error, 'Error must be type object.');
             done();
         });
     });
@@ -262,8 +261,8 @@ describe('lib/res_extend', () => {
 
         extended_middleware(req, res, () => {
             (() => {
-                res.meta('some string that is not object')
-            }).should.throw(Error, 'Meta must be type object.')
+                res.meta('some string that is not object');
+            }).should.throw(Error, 'Meta must be type object.');
 
             done();
         });
@@ -276,8 +275,8 @@ describe('lib/res_extend', () => {
 
         extended_middleware(req, res, () => {
             (() => {
-                res.meta({not_code: 'should throw error'})
-            }).should.throw(Error, 'Meta must have property code.')
+                res.meta({not_code: 'should throw error'});
+            }).should.throw(Error, 'Meta must have property code.');
 
             done();
         });
@@ -305,7 +304,6 @@ describe('lib/res_extend', () => {
             let error = 'Error warning.';
             res.warn(error);
 
-            let response = res._getData();
             res.statusCode.should.be.equal(400);
 
             done();
@@ -318,11 +316,7 @@ describe('lib/res_extend', () => {
         let extended_middleware = extended();
 
         extended_middleware(req, res, () => {
-            let error = 'Error warning.';
             res.items([{id: 1}, {id: 2}]).send();
-
-            let response = res._getData();
-
             done();
         });
     });
@@ -467,7 +461,7 @@ describe('lib/res_extend', () => {
                 {id: 1, name: 'John'},
                 {id: 2, name: 'Jane'}
             ];
-            let member = {id: 3, name: 'Joe'}
+            let member = {id: 3, name: 'Joe'};
             let expected_result = [
                 {id: 1, name: 'John'},
                 {id: 2, name: 'Jane'},

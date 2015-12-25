@@ -3,9 +3,9 @@
     Utilities
 */
 
-function hash (string, hash) {
+function hash (string, algo) {
     return require('crypto')
-        .createHash(hash || 'sha1')
+        .createHash(algo || 'sha1')
         .update('' + string)
         .digest('hex');
 }
@@ -30,23 +30,23 @@ function get_data (sample, source, ref) {
 
     ref = ref || '';
 
-    function validate_primitive_value (sample, prop, source, source_prop, ref) {
-        const source_type = typeof source[source_prop];
-        const type = typeof sample[prop];
+    function validate_primitive_value (_sample, prop, _source, source_prop, _ref) {
+        const source_type = typeof _source[source_prop];
+        const type = typeof _sample[prop];
 
-        if ((source_type === 'undefined' || (source_type === 'string' && !source[source_prop])) && prop[0] !== '_') {
-            return new Error(ref + ' is missing');
+        if ((source_type === 'undefined' || (source_type === 'string' && !_source[source_prop])) && prop[0] !== '_') {
+            return new Error(_ref + ' is missing');
         }
 
         if (source_type !== 'undefined' && source_type !== type) {
-            return new Error(ref + ' invalid type');
+            return new Error(_ref + ' invalid type');
         }
 
         if (type === 'object') {
-            return get_data(sample[prop], source[source_prop], ref);
+            return get_data(_sample[prop], _source[source_prop], _ref);
         }
 
-        return source[source_prop];
+        return _source[source_prop];
     }
 
     if (typeof sample !== typeof source || (Array.isArray(sample) !== Array.isArray(source))) {
@@ -140,7 +140,6 @@ function split (a, n) {
 
 function get_log_stream (dir) {
     const file_stream_rotator = require('file-stream-rotator');
-    const moment = require('moment');
     const proc_id = process.env.cpu_number || 0;
 
     return file_stream_rotator.getStream({
