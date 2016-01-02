@@ -15,7 +15,7 @@
     "file-stream-rotator": "0.0.6",
     "lodash": "^3.10.1",
     "method-override": "^2.3.5",
-    "moment": "^2.10.6",
+    "moment": "^2.11.0",
     "morgan": "^1.6.1",
     "multer": "^1.1.0",
     "winston": "^2.1.0"
