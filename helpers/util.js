@@ -10,6 +10,9 @@ function hash (string, algo) {
         .digest('hex');
 }
 
+
+
+
 /**
  * Data validator
  * @param1 pass a sample object
@@ -30,25 +33,6 @@ function get_data (sample, source, ref) {
 
     ref = ref || '';
 
-    function validate_primitive_value (_sample, prop, _source, source_prop, _ref) {
-        const source_type = typeof _source[source_prop];
-        const type = typeof _sample[prop];
-
-        if ((source_type === 'undefined' || (source_type === 'string' && !_source[source_prop])) && prop[0] !== '_') {
-            return new Error(_ref + ' is missing');
-        }
-
-        if (source_type !== 'undefined' && source_type !== type) {
-            return new Error(_ref + ' invalid type');
-        }
-
-        if (type === 'object') {
-            return get_data(_sample[prop], _source[source_prop], _ref);
-        }
-
-        return _source[source_prop];
-    }
-
     if (typeof sample !== typeof source || (Array.isArray(sample) !== Array.isArray(source))) {
         return new Error('Sample-Source type mismatch');
     }
@@ -66,23 +50,21 @@ function get_data (sample, source, ref) {
     }
 
     for (let prop in sample) {
-        if (sample.hasOwnProperty(prop)) {
-            let source_prop = prop;
-            let data;
+        let source_prop;
+        let data;
 
-            if (prop[0] === '_') {
-                source_prop = prop.slice(1);
-            }
+        source_prop = prop[0] === '_'
+            ? prop.slice(1)
+            : prop;
 
-            data = validate_primitive_value(sample, prop, source, source_prop, (ref ? ref + '.' : '') + prop);
+        data = validate_primitive_value(sample, prop, source, source_prop, (ref ? ref + '.' : '') + prop);
 
-            if (data instanceof Error) {
-                return data;
-            }
+        if (data instanceof Error) {
+            return data;
+        }
 
-            if (typeof data !== 'undefined') {
-                final[source_prop] = data;
-            }
+        if (typeof data !== 'undefined') {
+            final[source_prop] = data;
         }
     }
 
@@ -90,6 +72,24 @@ function get_data (sample, source, ref) {
 }
 
 
+function validate_primitive_value (_sample, prop, _source, source_prop, _ref) {
+    const source_type = typeof _source[source_prop];
+    const type = typeof _sample[prop];
+
+    if ((source_type === 'undefined' || (source_type === 'string' && !_source[source_prop])) && prop[0] !== '_') {
+        return new Error(_ref + ' is missing');
+    }
+
+    if (source_type !== 'undefined' && source_type !== type) {
+        return new Error(_ref + ' invalid type');
+    }
+
+    if (type === 'object') {
+        return get_data(_sample[prop], _source[source_prop], _ref);
+    }
+
+    return _source[source_prop];
+}
 
 function random_string (i) {
     const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';

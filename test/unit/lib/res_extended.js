@@ -192,7 +192,7 @@ describe('lib/res_extend', () => {
         extended_middleware(req, res, () => {
             (() => {
                 res.error('1', 'not an object');
-            }).should.throw(Error, 'Error must be type object.');
+            }).should.throw(Error, 'Error must have property code and message.');
             done();
         });
     });
@@ -205,7 +205,7 @@ describe('lib/res_extend', () => {
         extended_middleware(req, res, () => {
             (() => {
                 res.error('1', {});
-            }).should.throw(Error, 'Error must have property code.');
+            }).should.throw(Error, 'Error must have property code and message.');
             done();
         });
     });
@@ -218,7 +218,7 @@ describe('lib/res_extend', () => {
         extended_middleware(req, res, () => {
             (() => {
                 res.error('1', {code: '3RR0RC0D3'});
-            }).should.throw(Error, 'Error must have property message.');
+            }).should.throw(Error, 'Error must have property code and message.');
             done();
         });
     });
