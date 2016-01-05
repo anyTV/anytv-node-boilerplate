@@ -1,6 +1,5 @@
 'use strict';
 
-const should = require('chai').should();
 const util = require(process.cwd() + '/helpers/util');
 
 

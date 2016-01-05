@@ -4,15 +4,16 @@
   "description": "REST API boilerplate",
   "main": "server.js",
   "dependencies": {
-    "anytv-node-cors": "latest",
-    "anytv-node-error-handler": "latest",
-    "anytv-node-importer": "latest",
-    "anytv-node-mysql": "latest",
-    "body-parser": "^1.14.1",
+    "anytv-node-cors": "0.0.7",
+    "anytv-node-error-handler": "0.0.10",
+    "anytv-node-importer": "0.0.0",
+    "anytv-node-mysql": "0.0.42",
+    "body-parser": "^1.14.2",
     "compression": "^1.6.0",
-    "cuddle": "latest",
+    "cuddle": "0.0.50",
     "express": "^4.13.3",
     "file-stream-rotator": "0.0.6",
+    "grunt-contrib-watch": "^0.6.1",
     "lodash": "^3.10.1",
     "method-override": "^2.3.5",
     "moment": "^2.10.6",
@@ -21,10 +22,10 @@
     "winston": "^2.1.0"
   },
   "scripts": {
-    "start": "npm install && nodemon server.js",
-    "test": "make test",
+    "start": "grunt",
+    "test": "grunt test",
     "coverage": "unset NODE_ENV && istanbul cover _mocha -- --recursive -R spec -t 5000 -s 100",
-    "test-dev": "unset NODE_ENV && mocha --watch --recursive -R spec -t 5000 -s 100",
+    "test-dev": "grunt test-watch",
     "docs": "apidoc -i controllers -o apidoc/"
   },
   "repository": {
@@ -43,6 +44,11 @@
     "apidoc": "^0.14.0",
     "chai": "^3.4.1",
     "coveralls": "^2.11.4",
+    "grunt": "^0.4.5",
+    "grunt-contrib-jshint": "^0.11.3",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-express-server": "^0.5.1",
+    "grunt-mocha-test": "^0.12.7",
     "istanbul": "^0.4.0",
     "mocha": "^2.3.3",
     "mocha-lcov-reporter": "^1.0.0",
@@ -52,5 +58,6 @@
   "apidoc": {
     "title": "Node REST API Boilerplate",
     "url": "http://app.api.tm"
-  }
+  },
+  "license": "MIT"
 }

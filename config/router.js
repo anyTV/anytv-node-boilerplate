@@ -2,7 +2,8 @@
 
 const config   = require(__dirname + '/config');
 const importer = require('anytv-node-importer');
-const upload   = require('multer')({dest: config.UPLOAD_DIR});
+
+
 
 module.exports = (router) => {
     const __ = importer.dirloadSync(__dirname + '/../controllers');

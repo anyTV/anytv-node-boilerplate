@@ -11,9 +11,10 @@
     "laxbreak": true,
     "curly": true,
     "eqeqeq": true,
-    "latedef": true,
+    "latedef": false,
     "immed": true,
     "maxdepth": 4,
     "maxlen": 120,
-    "shadow": "outer"
+    "shadow": "outer",
+    "elision": true
 }
