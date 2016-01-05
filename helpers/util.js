@@ -50,23 +50,21 @@ function get_data (sample, source, ref) {
     }
 
     for (let prop in sample) {
-        if (sample.hasOwnProperty(prop)) {
-            let source_prop = prop;
-            let data;
+        let source_prop;
+        let data;
 
-            if (prop[0] === '_') {
-                source_prop = prop.slice(1);
-            }
+        source_prop = prop[0] === '_'
+            ? prop.slice(1)
+            : prop;
 
-            data = validate_primitive_value(sample, prop, source, source_prop, (ref ? ref + '.' : '') + prop);
+        data = validate_primitive_value(sample, prop, source, source_prop, (ref ? ref + '.' : '') + prop);
 
-            if (data instanceof Error) {
-                return data;
-            }
+        if (data instanceof Error) {
+            return data;
+        }
 
-            if (typeof data !== 'undefined') {
-                final[source_prop] = data;
-            }
+        if (typeof data !== 'undefined') {
+            final[source_prop] = data;
         }
     }
 

@@ -1,6 +1,5 @@
 'use strict';
 
-const config   = require(__dirname + '/config');
 const importer = require('anytv-node-importer');
 
 
