@@ -41,6 +41,10 @@ exports.get_user = (req, res, next) => {
         res.item(result[0])
             .send();
     }
+    
+    function try () {
+        
+    }  
 
     start();
 };
