@@ -7,7 +7,7 @@
     "anytv-node-cors": "0.0.7",
     "anytv-node-error-handler": "0.0.10",
     "anytv-node-importer": "0.0.0",
-    "anytv-node-mysql": "0.0.44",
+    "anytv-node-mysql": "0.0.45",
     "body-parser": "^1.14.2",
     "compression": "^1.6.0",
     "cuddle": "0.0.52",
