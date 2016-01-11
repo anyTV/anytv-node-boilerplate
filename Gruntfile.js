@@ -8,6 +8,7 @@ module.exports = (grunt) => {
             files: [
                 'Gruntfile.js',
                 'server.js',
+                'config/**/*.js',
                 'controllers/**/*.js',
                 'helpers/**/*.js',
                 'lib/**/*.js',
