@@ -5,6 +5,7 @@ Node REST API Boilerplate
 [![Coverage Status](https://coveralls.io/repos/anyTV/anytv-node-boilerplate/badge.svg?branch=master&service=github)](https://coveralls.io/github/anyTV/anytv-node-boilerplate?branch=master)
 [![Dependencies](https://david-dm.org/anyTV/anytv-node-boilerplate.svg)](https://david-dm.org/anyTV/anytv-node-boilerplate)
 [![bitHound Dependencies](https://www.bithound.io/github/anyTV/anytv-node-boilerplate/badges/dependencies.svg)](https://www.bithound.io/github/anyTV/anytv-node-boilerplate/master/dependencies/npm)
+[![bitHound Code](https://www.bithound.io/github/anyTV/anytv-node-boilerplate/badges/code.svg)](https://www.bithound.io/github/anyTV/anytv-node-boilerplate)
 
 Table of contents
 -----
