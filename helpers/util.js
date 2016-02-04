@@ -84,7 +84,7 @@ function validate_primitive_value (_sample, prop, _source, source_prop, _ref) {
         return new Error(_ref + ' invalid type');
     }
 
-    if (type === 'object') {
+    if (type === 'object' && (prop[0] !== '_' || source_type !== 'undefined')) {
         return get_data(_sample[prop], _source[source_prop], _ref);
     }
 
