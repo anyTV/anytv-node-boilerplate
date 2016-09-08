@@ -9,14 +9,14 @@ const stamp   = () => moment.utc().format('YYYY-MM-DD HH:mm:ss:SSS[ms]');
 
 
 // remove default
+// then replace with a better one
 winston.remove(winston.transports.Console);
-
-// replace with a better one
 winston.add(winston.transports.Console, {
     level: config.LOG_LEVEL || 'silly',
     colorize: true,
     timestamp: stamp
 });
+
 
 // handle error logs
 winston.add(winston.transports.File,{
