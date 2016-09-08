@@ -8,8 +8,11 @@ const moment  = require('moment');
 const stamp   = () => moment.utc().format('YYYY-MM-DD HH:mm:ss:SSS[ms]');
 
 
-// handle console
-winston.cli({
+// remove default
+winston.remove(winston.transports.Console);
+
+// replace with a better one
+winston.add(winston.transports.Console, {
     level: config.LOG_LEVEL || 'silly',
     colorize: true,
     timestamp: stamp
