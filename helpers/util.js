@@ -138,19 +138,6 @@ function split (a, n) {
 }
 
 
-function get_log_stream (dir) {
-    const file_stream_rotator = require('file-stream-rotator');
-    const proc_id = process.env.cpu_number || 0;
-
-    return file_stream_rotator.getStream({
-        filename: dir + '/access-%DATE%.' + proc_id + '.log',
-        frequency: 'daily',
-        verbose: false,
-        date_format: 'YYYY-MM-DD'
-    });
-}
-
-
 function clone (obj) {
     return JSON.parse(JSON.stringify(obj));
 }
@@ -165,6 +152,5 @@ module.exports = {
     to_title_case,
     caps_first,
     split,
-    get_log_stream,
     clone
 };
