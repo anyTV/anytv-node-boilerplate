@@ -10,13 +10,11 @@
     "anytv-node-mysql": "0.0.49",
     "body-parser": "^1.14.2",
     "compression": "^1.6.0",
-    "cuddle": "1.0.4",
     "express": "^4.13.3",
     "lodash": "^4.9.0",
     "method-override": "^2.3.5",
     "moment": "^2.11.2",
     "morgan": "^1.7.0",
-    "multer": "^1.1.0",
     "winston": "^2.1.0",
     "winston-daily-rotate-file": "^1.3.0"
   },
