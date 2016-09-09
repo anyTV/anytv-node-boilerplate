@@ -1,3 +1,0 @@
-{
-    "ignore": ["views/*", "tests/*", "logs/*", "trash/*", "doc/*", "lib-cov/*", "assets/*", "uploads/*"]
-}
