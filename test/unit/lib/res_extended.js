@@ -2,8 +2,8 @@
 'use strict';
 
 const httpMocks = require('node-mocks-http');
-const should = require('chai').should();
-const extended = require(process.cwd() + '/lib/res_extended');
+const should    = require('chai').should();
+const extended  = require(process.cwd() + '/lib/res_extended');
 
 describe('lib/res_extend', () => {
 
