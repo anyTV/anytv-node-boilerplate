@@ -50,7 +50,7 @@
     "mocha": "^3.0.2",
     "mocha-lcov-reporter": "^1.0.0",
     "node-mocks-http": "^1.5.1",
-    "supertest": "^2.0.0"
+    "supertest": "^2.0.1"
   },
   "apidoc": {
     "title": "Node REST API Boilerplate",
