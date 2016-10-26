@@ -1,9 +1,5 @@
 'use strict';
 
-/**
-    Last maintained : 2015-11-06 (rvnjl)
-**/
-
 const logger      = require(__dirname + '/helpers/logger');
 const config      = require(__dirname + '/config/config');
 const mysql       = require('anytv-node-mysql');
