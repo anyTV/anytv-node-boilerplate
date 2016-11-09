@@ -39,9 +39,10 @@ function get_data (sample, source, ref) {
 
     if (Array.isArray(sample)) {
         temp = source.map((a, index) => {
-            const ret = validate_primitive_value(sample, 0, source, index, ref + `[${index}]`);
-            has_error = ret instanceof Error ? ret : false;
-            return ret;
+            const ret = get_data(sample[0], source[index], ref + `[${index}]`);
+            if (ret instanceof Error) {
+                has_error = ret;
+            }
         });
 
         return has_error
