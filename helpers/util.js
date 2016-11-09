@@ -43,6 +43,7 @@ function get_data (sample, source, ref) {
             if (ret instanceof Error) {
                 has_error = ret;
             }
+            return ret;
         });
 
         return has_error
