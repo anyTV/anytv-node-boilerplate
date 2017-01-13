@@ -38,7 +38,7 @@
   },
   "homepage": "https://github.com/anyTV/anytv-node-boilerplate",
   "devDependencies": {
-    "apidoc": "^0.16.0",
+    "apidoc": "^0.17.0",
     "chai": "^3.4.1",
     "coveralls": "^2.11.9",
     "grunt": "^1.0.1",
