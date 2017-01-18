@@ -9,7 +9,7 @@ module.exports = (router) => {
 
     router.del = router.delete;
 
-    router.get('/user/:id', __.user.get_user);
+    router.get('/user/:id', __.user.get_user, __.user.say_hello);
 
     router.all('*', (req, res) => {
         res.status(404)
