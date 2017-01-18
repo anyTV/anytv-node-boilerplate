@@ -1,7 +1,7 @@
 'use strict';
 
 const mysql   = require('anytv-node-mysql');
-// const winston = require('winston');
+const winston = require('winston');
 
 /**
  * @api {get} /user/:id Get user information
@@ -14,34 +14,36 @@ const mysql   = require('anytv-node-mysql');
  * @apiSuccess {String} date_created Time when the user was created
  * @apiSuccess {String} date_updated Time when last update occurred
  */
-exports.get_user = (req, res) => {
+exports.get_user = function (req, res, next) {
+
 
     function start () {
+
         mysql.use('my_db')
             .query(
-                `INSERT INTO users2(id, name) values (1, "raven")
-                 ON DUPLICATE KEY UPDATE name = "johnn", date_updated = NOW();`,
+                'SELECT * FROM users WHERE user_id = ? LIMIT 1;',
+                [req.params.id],
                 send_response
             )
             .end();
     }
 
-    function send_response (err, result) {
 
-        console.log(JSON.stringify(result));
+    function send_response (err, result, args, last_query) {
 
-        res.send({message: 'aloha'});
-    }
+        if (err) {
+            winston.error('Error in selecting users', last_query);
+            return next(err);
+        }
 
-    start();
-};
+        if (!result.length) {
+            return res.status(404)
+                .error({code: 'USER404', message: 'User not found'})
+                .send();
+        }
 
-
-exports.say_hello = (req, res, next) => {
-
-    function start () {
-        console.log('hello');
-        next();
+        res.item(result)
+            .send();
     }
 
     start();
