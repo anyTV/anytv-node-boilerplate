@@ -1,9 +1,5 @@
 'use strict';
 
-/**
-    Last maintained : 2015-11-06 (rvnjl)
-**/
-
 const logger      = require(__dirname + '/helpers/logger');
 const config      = require(__dirname + '/config/config');
 const mysql       = require('anytv-node-mysql');
@@ -34,13 +30,13 @@ function start () {
         .add('my_db', config.DB, true);
 
 
-    winston.log('info', 'Starting', config.APP_NAME, 'on', config.ENV, 'environment');
+    winston.info('Starting', config.APP_NAME, 'on', config.ENV, 'environment');
 
     // configure express app
     app.set('case sensitive routing', true);
     app.set('x-powered-by', false);
 
-    winston.log('verbose', 'Binding 3rd-party middlewares');
+    winston.verbose('Binding 3rd-party middlewares');
     app.use(morgan('combined', {stream: {write: logger.info}}));
     app.use(express.static(config.ASSETS_DIR));
     app.use(require('method-override')());
@@ -49,13 +45,13 @@ function start () {
     app.use(require('compression')());
 
 
-    winston.log('verbose', 'Binding custom middlewares');
+    winston.verbose('Binding custom middlewares');
     app.use(require('anytv-node-cors')(config.CORS));
     app.use(require(__dirname + '/lib/res_extended')());
     app.use(require(__dirname + '/config/router')(express.Router()));
     app.use(require('anytv-node-error-handler')(winston));
 
-    winston.log('info', 'Server listening on port', config.PORT);
+    winston.info('Server listening on port', config.PORT);
 
     return app.listen(config.PORT);
 }

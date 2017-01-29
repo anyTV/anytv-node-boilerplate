@@ -14,9 +14,11 @@ const winston = require('winston');
  * @apiSuccess {String} date_created Time when the user was created
  * @apiSuccess {String} date_updated Time when last update occurred
  */
-exports.get_user = (req, res, next) => {
+exports.get_user = function (req, res, next) {
+
 
     function start () {
+
         mysql.use('my_db')
             .query(
                 'SELECT * FROM users WHERE user_id = ? LIMIT 1;',
@@ -26,7 +28,9 @@ exports.get_user = (req, res, next) => {
             .end();
     }
 
+
     function send_response (err, result, args, last_query) {
+
         if (err) {
             winston.error('Error in selecting users', last_query);
             return next(err);
@@ -38,7 +42,7 @@ exports.get_user = (req, res, next) => {
                 .send();
         }
 
-        res.item(result[0])
+        res.item(result)
             .send();
     }
 
