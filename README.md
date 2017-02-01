@@ -65,6 +65,7 @@ const moment = require('moment');
 
 
 exports.update_user = (req, res, next) => {
+
     const data = util.get_data(
         {
             user_id: '',
@@ -73,6 +74,7 @@ exports.update_user = (req, res, next) => {
         },
         req.body
     );
+
 
     function start () {
         let id;
@@ -92,6 +94,7 @@ exports.update_user = (req, res, next) => {
             )
             .end();
     }
+
 
     function send_response (err, result) {
         if (err) {
@@ -154,6 +157,7 @@ exports.update_user = (req, res, next) => {
 
 ```javascript
     function start () {
+    
         let id;
 
         if (data instanceof Error) {
@@ -180,6 +184,7 @@ exports.update_user = (req, res, next) => {
 
 ```javascript
     function send_response (err, result) {
+    
         if (err) {
             return next(err);
         }
