@@ -1,11 +1,13 @@
 'use strict';
+
+const crypto = require('crypto);
+
 /**
     Utilities
 */
 
 function hash (string, algo) {
-    return require('crypto')
-        .createHash(algo || 'sha1')
+    return crypto.createHash(algo || 'sha1')
         .update('' + string)
         .digest('hex');
 }
