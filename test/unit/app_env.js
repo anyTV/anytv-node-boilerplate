@@ -9,6 +9,6 @@ describe('App', () => {
         config.use('development').ENV.should.equal('development');
         config.use('test').ENV.should.equal('test');
         config.use('production').ENV.should.equal('production');
-		done();
-	});
+        done();
+    });
 });
