@@ -1,7 +1,8 @@
 'use strict';
 
-const mysql   = require('anytv-node-mysql');
-const winston = require('winston');
+const mysql     = require('anytv-node-mysql');
+const winston   = require('winston');
+const Validator = require('Validator');
 
 /**
  * @api {get} /user/:id Get user information
@@ -18,6 +19,12 @@ exports.get_user = function (req, res, next) {
 
 
     function start () {
+
+        const validator = Validator.make(req.params, { id: 'required|alpha_dash' });
+
+        if (validator.fails()) {
+            return res.warn(validator.getErrors());
+        }
 
         mysql.use('my_db')
             .query(

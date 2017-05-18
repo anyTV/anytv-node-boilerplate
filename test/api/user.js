@@ -43,4 +43,15 @@ describe('User', () => {
                 done();
             });
     });
+
+    it('should return 400', (done) => {
+        api.get('/user/$$$')
+            .expect(400)
+            .end((err, res) => {
+                should.not.exist(err);
+                should.exist(JSON.parse(res.text));
+
+                done();
+            });
+    });
 });
