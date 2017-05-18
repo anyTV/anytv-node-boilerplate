@@ -1,6 +1,6 @@
 {
     "browser": true,
-    "esnext": true,
+    "esversion": 6,
     "globals": {},
     "globalstrict": true,
     "quotmark": "single",
