@@ -69,32 +69,31 @@ exports.update_user = (req, res, next) => {
 
     function start () {
 
-        const data = req.body;
-        let id;
+         req.checkBody({
+            user_id: 'required|alpha_dash',
+            first_name: 'string',
+            last_name: 'string'
+         });
 
-        const validator = Validator.make(
-            data,
-            {
-                user_id: 'required|alpha_dash',
-                first_name: 'string',
-                last_name: 'string'
+        req.getValidationResult().then(result => {
+            if (!result.isEmpty()) {
+               return res.warn(result.mapped());
             }
-        );
 
-        if (validator.fails()) {
-            return res.warn(400, validator.getErrors());
-        }
+            const data = req.body;
+            const id = data.id;
+            delete data.id;
 
-        id = data.user_id;
-        delete data.user_id;
+            const query = squel.update()
+                .table('users')
+                .setFields(data)
+                .where('user_id = ?', id)
+                .limit(1)
 
-        mysql.use('my_db')
-            .query(
-                'UPDATE users SET ? WHERE user_id = ? LIMIT 1;',
-                [data, id],
-                send_response
-            )
-            .end();
+            mysql.use('my_db')
+                .squel(query, send_response)
+                .end();
+        });
     }
 
 
@@ -142,32 +141,31 @@ exports.update_user = (req, res, next) => {
 ```javascript
     function start () {
 
-        const data = req.body;
-        let id;
-
-        const validator = Validator.make(
-            data,
-            {
+        req.checkBody({
                 user_id: 'required|alpha_dash',
                 first_name: 'string',
                 last_name: 'string'
+        });
+
+        req.getValidationResult().then(result => {
+            if (!result.isEmpty()) {
+               return res.warn(result.mapped());
             }
-        );
 
-        if (validator.fails()) {
-            return res.warn(400, validator.getErrors());
-        }
+            const data = req.body;
+            const id = data.id;
+            delete data.id;
 
-        id = data.id;
-        delete data.id;
+            const query = squel.update()
+                .table('users')
+                .setFields(data)
+                .where('user_id = ?', id)
+                .limit(1)
 
-        mysql.use('my_db')
-            .query(
-                'UPDATE users SET ? WHERE user_id = ? LIMIT 1;',
-                [id, data],
-                send_response
-            )
-            .end();
+            mysql.use('my_db')
+                .squel(query, send_response)
+                .end();
+        });
     }
 ```
 

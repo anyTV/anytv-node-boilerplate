@@ -1,8 +1,8 @@
 'use strict';
 
 const mysql     = require('anytv-node-mysql');
+const squel     = require('squel');
 const winston   = require('winston');
-const Validator = require('Validator');
 
 /**
  * @api {get} /user/:id Get user information
@@ -20,19 +20,28 @@ exports.get_user = function (req, res, next) {
 
     function start () {
 
-        const validator = Validator.make(req.params, { id: 'required|alpha_dash' });
+       req.checkParams({
+           'id': {
+               notEmpty: true,
+               isAlphaDash: true
+           }
+       });
 
-        if (validator.fails()) {
-            return res.warn(validator.getErrors());
-        }
+       req.getValidationResult().then(result => {
 
-        mysql.use('my_db')
-            .query(
-                'SELECT * FROM users WHERE user_id = ? LIMIT 1;',
-                [req.params.id],
-                send_response
-            )
-            .end();
+           if (!result.isEmpty()) {
+               return res.warn(result.mapped());
+           }
+
+           const query = squel.select()
+               .from('users')
+               .where('user_id = ?', req.params.id)
+               .limit(1);
+
+           mysql.use('my_db')
+               .squel(query, send_response)
+               .end();
+       });
     }
 
 

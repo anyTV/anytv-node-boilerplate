@@ -2,14 +2,15 @@
 
 require('app-module-path/register');
 
-const logger      = require('helpers/logger');
-const config      = require('config/config');
+const logger = require('helpers/logger');
+const config = require('config/config');
 
-const mysql       = require('anytv-node-mysql');
-const body_parser = require('body-parser');
-const express     = require('express');
-const winston     = require('winston');
-const morgan      = require('morgan');
+const mysql             = require('anytv-node-mysql');
+const body_parser       = require('body-parser');
+const express           = require('express');
+const express_validator = require('express-validator');
+const winston           = require('winston');
+const morgan            = require('morgan');
 
 let handler;
 let app;
@@ -46,6 +47,7 @@ function start () {
     app.use(require('method-override')());
     app.use(body_parser.urlencoded({extended: false}));
     app.use(body_parser.json());
+    app.use(express_validator(config.VALIDATOR));
     app.use(require('compression')());
 
 

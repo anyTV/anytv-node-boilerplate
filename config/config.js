@@ -28,6 +28,30 @@ const config = {
         database: 'test'
     },
 
+    VALIDATOR: {
+        /**
+         * Add custom validators here
+         * Format: { "validatorName": function(value, [additional arguments]), ... }
+         */
+        customValidators: {
+            isAlphaDash: (value) => {
+                return value && /^[a-z0-9]+(-[a-z0-9]+)+$/i.test(value);
+            },
+            isArray: (value) => {
+                return Array.isArray(value);
+            },
+            min: (value, min_value) => {
+                return value >= min_value;
+            },
+            max: (value, max_value) => {
+                return value <= max_value;
+            },
+            range: (value, min, max) => {
+                return min <= value && value <= max;
+            }
+        }
+    },
+
     use: (env) => {
         _.assign(config, require(__dirname + '/env/' + env));
         return config;
