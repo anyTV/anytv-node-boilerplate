@@ -53,7 +53,7 @@ const config = {
     },
 
     use: (env) => {
-        _.assign(config, require(__dirname + '/env/' + env));
+        _.merge(config, require(__dirname + '/env/' + env));
         return config;
     }
 };

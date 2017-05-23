@@ -61,7 +61,6 @@ Here's a typical controller:
 const config    = require(__dirname + '/../config/config');
 const mysql     = require('anytv-node-mysql');
 const moment    = require('moment');
-const Validator = require('Validator');
 
 
 
@@ -120,7 +119,6 @@ Detailed explanation:
 const config = require(__dirname + '/../config/config');
 const mysql  = require('anytv-node-mysql');
 const moment = require('moment');
-const Validator = require('Validator');
 ```
 
 - The first part of the controller contains the config, helpers, and libraries to be used by the controller's functions
