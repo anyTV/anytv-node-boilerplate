@@ -1,15 +1,14 @@
 'use strict';
 
-const config = require(process.cwd() + '/config/config');
+require('app-module-path/register');
+
+const config = require('config/config');
 
 describe('App', () => {
-    it('environment should default to development environment', (done) => {
-		config.ENV.should.equal('development');
-		done();
-	});
-
-    it('environment should set to test environment', (done) => {
-		config.use('test').ENV.should.equal('test');
-		done();
-	});
+    it('environment should set to specified environment', (done) => {
+        config.use('development').ENV.should.equal('development');
+        config.use('test').ENV.should.equal('test');
+        config.use('production').ENV.should.equal('production');
+        done();
+    });
 });

@@ -24,7 +24,7 @@ describe('User', () => {
     });
 
     it('should return 404', (done) => {
-        api.get('/user/wrong_id')
+        api.get('/user/wrong-id')
             .expect(404)
             .end((err) => {
                 should.not.exist(err);
@@ -37,6 +37,17 @@ describe('User', () => {
         api.get('/user/wrong_id')
             .end((err, res) => {
 
+                should.not.exist(err);
+                should.exist(JSON.parse(res.text));
+
+                done();
+            });
+    });
+
+    it('should return 400', (done) => {
+        api.get('/user/$$$')
+            .expect(400)
+            .end((err, res) => {
                 should.not.exist(err);
                 should.exist(JSON.parse(res.text));
 

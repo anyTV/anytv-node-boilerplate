@@ -58,41 +58,41 @@ Here's a typical controller:
 ```javascript
 // user.js
 
-const util   = require(__dirname + '/../helpers/util'),
-const mysql  = require('anytv-node-mysql'),
-const moment = require('moment');
+const config    = require(__dirname + '/../config/config');
+const mysql     = require('anytv-node-mysql');
+const moment    = require('moment');
 
 
 
 exports.update_user = (req, res, next) => {
 
-    const data = util.get_data(
-        {
-            user_id: '',
-            _first_name: '',
-            _last_name: ''
-        },
-        req.body
-    );
-
-
     function start () {
-        let id;
 
-        if (data instanceof Error) {
-            return res.warn(400, {message: data.message});
-        }
+         req.checkBody({
+            user_id: 'required|alpha_dash',
+            first_name: 'string',
+            last_name: 'string'
+         });
 
-        id = data.user_id;
-        delete data.user_id;
+        req.getValidationResult().then(result => {
+            if (!result.isEmpty()) {
+               return res.warn(result.mapped());
+            }
 
-        mysql.use('my_db')
-            .query(
-                'UPDATE users SET ? WHERE user_id = ? LIMIT 1;',
-                [data, id],
-                send_response
-            )
-            .end();
+            const data = req.body;
+            const id = data.id;
+            delete data.id;
+
+            const query = squel.update()
+                .table('users')
+                .setFields(data)
+                .where('user_id = ?', id)
+                .limit(1)
+
+            mysql.use('my_db')
+                .squel(query, send_response)
+                .end();
+        });
     }
 
 
@@ -117,7 +117,6 @@ Detailed explanation:
 
 ```javascript
 const config = require(__dirname + '/../config/config');
-const util   = require(__dirname + '/../helpers/util');
 const mysql  = require('anytv-node-mysql');
 const moment = require('moment');
 ```
@@ -137,43 +136,34 @@ exports.update_user = (req, res, next) => {
 - `res` also an object from express, use this object to respond to the request
 - `next` a function from express, use this to pass to the next middleware which is the error handler
 
-
-```javascript
-    const data = util.get_data(
-        {
-            user_id: '',
-            _first_name: '',
-            _last_name: ''
-        },
-        req.body
-    ),
-```
-
-- it is common to use `data` as the variable to store the parameters given by the user
-- `util.get_data` helps on filtering the request payload
-- putting an underscore as first character makes it optional
-- non-function variables are also declared first
-- new line after non-function variables to make it more readable
-
 ```javascript
     function start () {
-    
-        let id;
 
-        if (data instanceof Error) {
-            return res.warn(400, {message: data.message});
-        }
+        req.checkBody({
+                user_id: 'required|alpha_dash',
+                first_name: 'string',
+                last_name: 'string'
+        });
 
-        id = data.id;
-        delete data.id;
+        req.getValidationResult().then(result => {
+            if (!result.isEmpty()) {
+               return res.warn(result.mapped());
+            }
 
-        mysql.use('my_db')
-            .query(
-                'UPDATE users SET ? WHERE user_id = ? LIMIT 1;',
-                [id, data],
-                send_response
-            )
-            .end();
+            const data = req.body;
+            const id = data.id;
+            delete data.id;
+
+            const query = squel.update()
+                .table('users')
+                .setFields(data)
+                .where('user_id = ?', id)
+                .limit(1)
+
+            mysql.use('my_db')
+                .squel(query, send_response)
+                .end();
+        });
     }
 ```
 
@@ -181,10 +171,12 @@ exports.update_user = (req, res, next) => {
 - the idea is to have the code be readable like a book, from top-to-bottom
 - since variables are declared first and functions are assigned to variables, we thought of having `start` function to denote the start of the process
 - as much as possible, there should be no more named functions inside this level except for `forEach`, `map`, `filter`, and `reduce`. If lodash is available, use it.
+- it is common to use `data` as the variable to store the parameters given by the user
+- always validate request `data` given by the users
 
 ```javascript
     function send_response (err, result) {
-    
+
         if (err) {
             return next(err);
         }
