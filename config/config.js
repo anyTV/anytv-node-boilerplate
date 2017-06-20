@@ -33,12 +33,24 @@ const config = {
             user: 'root',
             password: '',
             database: 'test'
-        },
+        }
     },
 
     use: (env) => {
+
         _.merge(config, importer.dirloadSync(__dirname + '/env/' + env));
-        return config;
+
+        /**
+         *  supports previous way of accessing config by
+         *  allowing ommitted filenames. example:
+         *
+         *  config.APP_NAME // will work
+         *
+         *  done via merging all keys in one object
+         */
+        let merged_config = _.reduce(config, (a, b) => _.merge(a, b), {});
+
+        return _.merge(merged_config, config);
     }
 };
 

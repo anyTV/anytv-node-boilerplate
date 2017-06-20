@@ -118,12 +118,11 @@ Detailed explanation:
 
 ```javascript
 const mysql  = require('anytv-node-mysql');
-const config = require('config/config');
 const util   = require('helpers/util');
 const moment = require('moment');
 ```
 
-- The first part of the controller contains the config, helpers, and libraries to be used by the controller's functions
+- The first part of the controller contains the helpers, and libraries to be used by the controller's functions
 - Notice the order of imported files, local files first followed by 3rd-party libraries
 - This block should always be followed by at least one new line to separate them visually easily
 
