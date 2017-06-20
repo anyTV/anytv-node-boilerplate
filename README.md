@@ -12,6 +12,7 @@ Table of contents
 - [Introduction](#introduction)
 - [Running the application](#running-the-application)
 - [Creating a controller](#creating-a-controller)
+- [Setting environment configs](#setting-environment-configs)
 - [Contributing](#contributing)
 - [Running test](#running-test)
 - [Code coverage](#code-coverage)
@@ -157,7 +158,7 @@ exports.update_user = (req, res, next) => {
 
 ```javascript
     function start () {
-    
+
         let id;
 
         if (data instanceof Error) {
@@ -184,7 +185,7 @@ exports.update_user = (req, res, next) => {
 
 ```javascript
     function send_response (err, result) {
-    
+
         if (err) {
             return next(err);
         }
@@ -202,6 +203,17 @@ exports.update_user = (req, res, next) => {
 Notes:
 - use `res.warn(status, obj)` or `res.warn(obj)`  instead of `next(error)` if the error is caused by the API caller
 
+
+## Setting environment configs
+
+The default configuration uses `development.js`. Any changes on that file will be ignored.
+If you want your config to be added on the repo permanently, add it on `config.js`.
+Just make sure that it's not confidential.
+
+`production.js` is a dedicated config file for the production environment. Use it via setting `$NODE_ENV` to `production`
+```sh
+export NODE_EN=production
+```
 
 
 ## Contributing

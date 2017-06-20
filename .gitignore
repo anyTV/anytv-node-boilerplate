@@ -17,4 +17,4 @@ node_modules
 trash
 sblm.sublime-workspace
 
-config/env/development.js
+config/env/*
