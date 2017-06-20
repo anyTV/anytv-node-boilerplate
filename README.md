@@ -212,7 +212,7 @@ Just make sure that it's not confidential.
 
 `production.js` is a dedicated config file for the production environment. Use it via setting `$NODE_ENV` to `production`
 ```sh
-export NODE_EN=production
+export NODE_ENV=production
 ```
 
 
