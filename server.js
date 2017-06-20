@@ -1,8 +1,10 @@
 'use strict';
 
-const logger      = require(__dirname + '/helpers/logger');
-const config      = require(__dirname + '/config/config');
+require('app-module-path/register');
+
 const mysql       = require('anytv-node-mysql');
+const logger      = require('helpers/logger');
+const config      = require('config/config');
 const body_parser = require('body-parser');
 const express     = require('express');
 const winston     = require('winston');
@@ -14,6 +16,7 @@ let app;
 
 
 function start () {
+
     if (handler) {
         handler.close();
     }
@@ -31,6 +34,7 @@ function start () {
 
 
     winston.info('Starting', config.APP_NAME, 'on', config.ENV, 'environment');
+    winston.info('DB:', config.DB.host);
 
     // configure express app
     app.set('case sensitive routing', true);
@@ -47,8 +51,8 @@ function start () {
 
     winston.verbose('Binding custom middlewares');
     app.use(require('anytv-node-cors')(config.CORS));
-    app.use(require(__dirname + '/lib/res_extended')());
-    app.use(require(__dirname + '/config/router')(express.Router()));
+    app.use(require('lib/res_extended')());
+    app.use(require('config/router')(express.Router()));
     app.use(require('anytv-node-error-handler')(winston));
 
     winston.info('Server listening on port', config.PORT);

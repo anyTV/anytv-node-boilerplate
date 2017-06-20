@@ -1,7 +1,7 @@
 'use strict';
 
-const config  = require(__dirname + '/../config/config');
 const daily   = require('winston-daily-rotate-file');
+const config  = require('config/config');
 const winston = require('winston');
 const moment  = require('moment');
 
