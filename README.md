@@ -117,9 +117,9 @@ exports.delete_user = (req, res, next) => {
 Detailed explanation:
 
 ```javascript
-const config = require(__dirname + '/../config/config');
-const util   = require(__dirname + '/../helpers/util');
 const mysql  = require('anytv-node-mysql');
+const config = require('config/config');
+const util   = require('helpers/util');
 const moment = require('moment');
 ```
 
@@ -206,11 +206,11 @@ Notes:
 
 ## Setting environment configs
 
-The default configuration uses `development.js`. Any changes on that file will be ignored.
+The default configuration uses `development`. Any changes on the files inside that folder will be ignored.
 If you want your config to be added on the repo permanently, add it on `config.js`.
 Just make sure that it's not confidential.
 
-`production.js` is a dedicated config file for the production environment. Use it via setting `$NODE_ENV` to `production`
+`production` is a dedicated config folder for the production environment. Use it via setting `$NODE_ENV` to `production`
 ```sh
 export NODE_ENV=production
 ```

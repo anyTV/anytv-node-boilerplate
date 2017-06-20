@@ -26,15 +26,15 @@ function start () {
 
     // set config
     config.use(process.env.NODE_ENV);
-    app.set('env', config.ENV);
+    app.set('env', config.app.ENV);
 
     // configure mysql
     mysql.set_logger(winston)
-        .add('my_db', config.DB, true);
+        .add('my_db', config.database.LOCAL_DB, true);
 
 
-    winston.info('Starting', config.APP_NAME, 'on', config.ENV, 'environment');
-    winston.info('DB:', config.DB.host);
+    winston.info('Starting', config.app.APP_NAME, 'on', config.app.ENV, 'environment');
+    winston.info('DB:', config.database.LOCAL_DB.host);
 
     // configure express app
     app.set('case sensitive routing', true);
@@ -42,7 +42,7 @@ function start () {
 
     winston.verbose('Binding 3rd-party middlewares');
     app.use(morgan('combined', {stream: {write: logger.info}}));
-    app.use(express.static(config.ASSETS_DIR));
+    app.use(express.static(config.app.ASSETS_DIR));
     app.use(require('method-override')());
     app.use(body_parser.urlencoded({extended: false}));
     app.use(body_parser.json());
@@ -50,14 +50,14 @@ function start () {
 
 
     winston.verbose('Binding custom middlewares');
-    app.use(require('anytv-node-cors')(config.CORS));
+    app.use(require('anytv-node-cors')(config.app.CORS));
     app.use(require('lib/res_extended')());
     app.use(require('config/router')(express.Router()));
     app.use(require('anytv-node-error-handler')(winston));
 
-    winston.info('Server listening on port', config.PORT);
+    winston.info('Server listening on port', config.app.PORT);
 
-    return app.listen(config.PORT);
+    return app.listen(config.app.PORT);
 }
 
 handler = start();
