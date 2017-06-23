@@ -6,7 +6,6 @@ const request = require('supertest');
 const config  = require(cwd + '/config/config');
 let api;
 
-require(cwd + '/server');
 api = request('http://localhost:' + config.app.PORT);
 
 

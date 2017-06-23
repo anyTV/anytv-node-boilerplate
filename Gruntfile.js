@@ -46,6 +46,18 @@ module.exports = (grunt) => {
                 spawn: false
             }
           }
+        },
+
+        env: {
+            dev: {
+                NODE_ENV: 'development'
+            },
+            prod: {
+                NODE_NEV: 'production'
+            },
+            test: {
+                NODE_ENV: 'test'
+            }
         }
     });
 
@@ -53,10 +65,11 @@ module.exports = (grunt) => {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-express-server');
     grunt.loadNpmTasks('grunt-mocha-test');
+    grunt.loadNpmTasks('grunt-env');
 
-    grunt.registerTask('test', ['jshint', 'mochaTest']);
-    grunt.registerTask('serve', ['express']);
-    grunt.registerTask('test-watch', ['jshint', 'mochaTest', 'watch']);
-    grunt.registerTask('default', ['jshint', 'express', 'watch']);
+    grunt.registerTask('test', ['env:test', 'jshint', 'mochaTest']);
+    grunt.registerTask('serve', ['env:dev', 'express']);
+    grunt.registerTask('test-watch', ['env:test', 'jshint', 'express', 'mochaTest', 'watch']);
+    grunt.registerTask('default', ['env:dev', 'jshint', 'express', 'watch']);
 
 };
