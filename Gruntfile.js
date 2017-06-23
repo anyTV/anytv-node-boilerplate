@@ -67,7 +67,7 @@ module.exports = (grunt) => {
     grunt.loadNpmTasks('grunt-mocha-test');
     grunt.loadNpmTasks('grunt-env');
 
-    grunt.registerTask('test', ['env:test', 'jshint', 'mochaTest']);
+    grunt.registerTask('test', ['env:test', 'jshint', 'express', 'mochaTest']);
     grunt.registerTask('serve', ['env:dev', 'express']);
     grunt.registerTask('test-watch', ['env:test', 'jshint', 'express', 'mochaTest', 'watch']);
     grunt.registerTask('default', ['env:dev', 'jshint', 'express', 'watch']);
