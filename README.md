@@ -40,7 +40,7 @@ This project **strictly** uses the [company's JS conventions](https://github.com
   ```sh
   npm install -g grunt-cli
   npm install
-  grunt
+  grunt #or npm run dev-server
   ```
 
 5. check http://localhost:<config.app.PORT>
@@ -247,9 +247,9 @@ grunt test
 ## Test Driven Development (TDD)
 - Use npm scripts or grunt tasks that watches the tests.
 ```sh
-npm test-dev
+npm run dev-tests
 # or
-grunt test-watch
+grunt dev-tests
 ```
 
 ## Code coverage
