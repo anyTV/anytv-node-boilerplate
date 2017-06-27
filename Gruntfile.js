@@ -25,7 +25,8 @@ module.exports = (grunt) => {
                 src: ['test/**/*.js'],
                 options: {
                     reporter: 'spec',
-                    timeout: 5000
+                    timeout: 5000,
+                    clearRequireCache: true,
                 }
             }
         },
@@ -39,13 +40,20 @@ module.exports = (grunt) => {
         },
 
         watch: {
-          express: {
-            files: ['<%= jshint.files %>'],
-            tasks: ['jshint', 'express'],
-            options: {
-                spawn: false
+            express: {
+                files: ['<%= jshint.files %>'],
+                tasks: ['jshint', 'express'],
+                options: {
+                    spawn: false,
+                },
+            },
+            test: {
+                files: ['<%= jshint.files %>'],
+                tasks: ['jshint', 'mochaTest'],
+                options: {
+                    spawn: false,
+                },
             }
-          }
         },
 
         env: {
@@ -67,9 +75,9 @@ module.exports = (grunt) => {
     grunt.loadNpmTasks('grunt-mocha-test');
     grunt.loadNpmTasks('grunt-env');
 
-    grunt.registerTask('test', ['env:test', 'jshint', 'express', 'mochaTest']);
+    grunt.registerTask('test', ['env:test', 'jshint', 'mochaTest']);
     grunt.registerTask('serve', ['env:dev', 'express']);
-    grunt.registerTask('test-watch', ['env:test', 'jshint', 'express', 'mochaTest', 'watch']);
-    grunt.registerTask('default', ['env:dev', 'jshint', 'express', 'watch']);
+    grunt.registerTask('test-watch', ['env:test', 'jshint', 'mochaTest', 'watch:test']);
+    grunt.registerTask('default', ['env:dev', 'jshint', 'express', 'watch:express']);
 
 };
