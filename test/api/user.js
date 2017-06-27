@@ -1,14 +1,16 @@
 'use strict';
 
-const cwd     = process.cwd();
-const should  = require('chai').should();
+require('app-module-path/register');
+
+const should = require('chai').should();
 const request = require('supertest');
-const config  = require(cwd + '/config/config');
-let api;
+const server = require('../../server');
+const api = request(server.app);
 
-require(cwd + '/server');
-api = request('http://localhost:' + config.app.PORT);
 
+after('close server', function () {
+    server.handler.close();
+});
 
 describe('User', () => {
     it('should get one user', (done) => {

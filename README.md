@@ -40,13 +40,13 @@ This project **strictly** uses the [company's JS conventions](https://github.com
   ```sh
   npm install -g grunt-cli
   npm install
-  grunt
+  grunt #or npm run dev-server
   ```
 
-5. check http://localhost
-6. Update package.json repository link
+5. check http://localhost:<config.app.PORT>
+6. Update package.json details
 7. Update config/config.js
-8. Don't forget tp.
+8. Don't forget to pull.
 
 
 Creating a controller
@@ -59,8 +59,11 @@ Here's a typical controller:
 ```javascript
 // user.js
 
-const util   = require(__dirname + '/../helpers/util'),
-const mysql  = require('anytv-node-mysql'),
+require('app-module-path/register');
+
+const util   = require('../helpers/util');
+const mysql  = require('anytv-node-mysql');
+const squel  = require('squel');
 const moment = require('moment');
 
 
@@ -87,12 +90,14 @@ exports.update_user = (req, res, next) => {
         id = data.user_id;
         delete data.user_id;
 
+        const query = squel.update()
+            .table('users')
+            .setFields(data)
+            .where('user_id = ?', id)
+            .limit(1);
+        
         mysql.use('my_db')
-            .query(
-                'UPDATE users SET ? WHERE user_id = ? LIMIT 1;',
-                [data, id],
-                send_response
-            )
+            .squel(query, send_response)
             .end();
     }
 
@@ -102,7 +107,7 @@ exports.update_user = (req, res, next) => {
             return next(err);
         }
 
-        res.send({message: 'User successfully updated'});
+        res.send({ message: 'User successfully updated' });
     }
 
     start();
@@ -117,12 +122,16 @@ exports.delete_user = (req, res, next) => {
 Detailed explanation:
 
 ```javascript
+require('app-module-path/register');
+
+const util   = require('../helpers/util');
 const mysql  = require('anytv-node-mysql');
-const util   = require('helpers/util');
+const squel  = require('squel');
 const moment = require('moment');
 ```
 
 - The first part of the controller contains the helpers, and libraries to be used by the controller's functions
+- The `app-module-path/register` module prevents the usage of `__dirname` in requiring local modules
 - Notice the order of imported files, local files first followed by 3rd-party libraries
 - This block should always be followed by at least one new line to separate them visually easily
 
@@ -167,12 +176,14 @@ exports.update_user = (req, res, next) => {
         id = data.id;
         delete data.id;
 
+        const query = squel.update()
+            .table('users')
+            .setFields(data)
+            .where('user_id = ?', id)
+            .limit(1);
+        
         mysql.use('my_db')
-            .query(
-                'UPDATE users SET ? WHERE user_id = ? LIMIT 1;',
-                [id, data],
-                send_response
-            )
+            .squel(query, send_response)
             .end();
     }
 ```
@@ -189,7 +200,7 @@ exports.update_user = (req, res, next) => {
             return next(err);
         }
 
-        res.send({message: 'User successfully updated'});
+        res.send({ message: 'User successfully updated' });
     }
 
     start();
@@ -222,13 +233,23 @@ Install the tools needed:
 npm install istanbul -g
 npm install apidoc -g
 npm install mocha -g
-npm install --dev
+npm install --only=dev
 ```
 
 ## Running test
 
 ```sh
 npm test
+# or
+grunt test
+```
+
+## Test Driven Development (TDD)
+- Use npm scripts or grunt tasks that watches the tests.
+```sh
+npm run dev-tests
+# or
+grunt dev-tests
 ```
 
 ## Code coverage
@@ -236,14 +257,14 @@ npm test
 ```sh
 npm run coverage
 ```
-Then open coverage/lcov-report/index.html.
+Then open `coverage/lcov-report/index.html`.
 
 ## API documentation
 
 ```sh
 npm run docs
 ```
-Then open apidoc/index.html.
+Then open `apidoc/index.html`.
 
 ## License
 

@@ -16,14 +16,15 @@
     "method-override": "^2.3.6",
     "moment": "^2.14.1",
     "morgan": "^1.7.0",
+    "squel": "^5.10.0",
     "winston": "^2.1.0",
     "winston-daily-rotate-file": "^1.4.3"
   },
   "scripts": {
-    "start": "grunt",
+    "dev-server": "grunt",
     "test": "grunt test",
+    "dev-tests": "grunt dev-tests",
     "coverage": "unset NODE_ENV && istanbul cover _mocha -- --recursive -R spec -t 5000 -s 100",
-    "test-dev": "grunt test-watch",
     "docs": "apidoc -i controllers -o apidoc/"
   },
   "repository": {
@@ -45,13 +46,14 @@
     "grunt": "^1.0.1",
     "grunt-contrib-jshint": "^1.0.0",
     "grunt-contrib-watch": "^1.0.0",
+    "grunt-env": "^0.4.4",
     "grunt-express-server": "^0.5.1",
     "grunt-mocha-test": "^0.13.1",
     "istanbul": "^0.4.3",
     "mocha": "^3.0.2",
     "mocha-lcov-reporter": "^1.0.0",
-    "supertest": "^3.0.0",
-    "node-mocks-http": "^1.5.6"
+    "node-mocks-http": "^1.5.6",
+    "supertest": "^3.0.0"
   },
   "apidoc": {
     "title": "Node REST API Boilerplate",
