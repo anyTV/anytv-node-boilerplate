@@ -6,7 +6,7 @@ const path = require('path');
 
 const config = {
 
-    // can be overriden by ${env}/app.js
+    // can be overridden by ${env}/app.js
     app: {
 
         APP_NAME: 'anyTV Node Boilerplate',
@@ -26,7 +26,7 @@ const config = {
 
     },
 
-    // can be overriden by ${env}/database.js
+    // can be overridden by ${env}/database.js
     database: {
         LOCAL_DB: {
             host: 'localhost',
@@ -42,7 +42,7 @@ const config = {
 
         /**
          *  supports previous way of accessing config by
-         *  allowing ommitted filenames. example:
+         *  allowing omitted filenames. example:
          *
          *  config.APP_NAME // will work
          *
