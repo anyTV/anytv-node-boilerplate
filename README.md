@@ -245,16 +245,7 @@ git submodule add -b <branch> <https repository> config/env/production
 - Whenever there are changes in production, you should update the submodule too.
 ```sh
 git submodule init
-git submodule foreach git pulion config, it should be added as a submodule.
-```sh
-git submodule add -b <branch> <https repository> config/env/production
-```
-- Whenever there are changes in production, you should update the submodule too.
-```sh
-git submodule init
-git submodule foreach git pull origin <branch>
-```
-l
+git submodule foreach git pull
 ```
 
 
