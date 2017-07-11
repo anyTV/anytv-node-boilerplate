@@ -237,6 +237,7 @@ npm install --only=dev
 ```
 
 ## Production Config
+- Please take a look at [Production Config Cleanup Guide](https://docs.google.com/document/d/1Mb1I0jg1ICVZrsGC4NoucKmf115J5-Yk6PWeWgdkPiY/edit#)
 - For production config, it should be added as a submodule.
 ```sh
 git submodule add -b <branch> <https repository> config/env/production
@@ -244,7 +245,16 @@ git submodule add -b <branch> <https repository> config/env/production
 - Whenever there are changes in production, you should update the submodule too.
 ```sh
 git submodule init
+git submodule foreach git pulion config, it should be added as a submodule.
+```sh
+git submodule add -b <branch> <https repository> config/env/production
+```
+- Whenever there are changes in production, you should update the submodule too.
+```sh
+git submodule init
 git submodule foreach git pull origin <branch>
+```
+l
 ```
 
 
