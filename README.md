@@ -236,6 +236,18 @@ npm install mocha -g
 npm install --only=dev
 ```
 
+## Production Config
+- For production config, it should be added as a submodule.
+```sh
+git submodule add -b <branch> <https repository> config/env/production
+```
+- Whenever there are changes in production, you should update the submodule too.
+```sh
+git submodule init
+git submodule foreach git pull origin <branch>
+```
+
+
 ## Running test
 
 ```sh
@@ -245,6 +257,7 @@ grunt test
 ```
 
 ## Test Driven Development (TDD)
+
 - Use npm scripts or grunt tasks that watches the tests.
 ```sh
 npm run dev-tests
