@@ -36,7 +36,7 @@ This project **strictly** uses the [company's JS conventions](https://github.com
   mysql -uroot < database/seed.sql
   ```
 
-4. Run this commands :
+4. Run these commands:
   ```sh
   npm install -g grunt-cli
   npm install
@@ -46,7 +46,7 @@ This project **strictly** uses the [company's JS conventions](https://github.com
 5. check http://localhost:<config.app.PORT>
 6. Update package.json details
 7. Update config/config.js
-8. Don't forget to pull.
+8. Don't forget to pull
 
 
 Creating a controller
