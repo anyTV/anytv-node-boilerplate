@@ -13,8 +13,11 @@ results
 
 npm-debug.log
 node_modules
+package-lock.json
 
 trash
 sblm.sublime-workspace
 
 config/env/*
+
+.idea
