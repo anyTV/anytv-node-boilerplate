@@ -4,7 +4,7 @@
         "json"
     ],
     "parserOptions": {
-        "ecmaVersion": 2016,
+        "ecmaVersion": 2017,
         "sourceType": "script",
         "impliedStrict": true
     },
@@ -18,18 +18,14 @@
     },
     "globals": {},
     "rules": {
-        "arrow-parens": [
-            "error",
-            "as-needed"
-        ],
         "block-scoped-var": "error",
         "comma-style": [
             "error",
             "last"
         ],
         "comma-dangle": [
-            "error",
-            "always-multiline"
+            "warn",
+            "only-multiline"
         ],
         "curly": [
             "error",

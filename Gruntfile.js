@@ -8,6 +8,7 @@ module.exports = grunt => {
             src: [
                 'Gruntfile.js',
                 'server.js',
+                'cluster.js',
                 'config/**/*.js',
                 'controllers/**/*.js',
                 'helpers/**/*.js',
