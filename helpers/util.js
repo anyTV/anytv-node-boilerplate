@@ -154,5 +154,5 @@ module.exports = {
     to_title_case,
     caps_first,
     split,
-    clone
+    clone,
 };

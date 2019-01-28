@@ -121,7 +121,7 @@ describe('lib/res_extend', () => {
         extended_middleware(req, res, () => {
             let errs = [
                 {code: '123', message: 'message 123'},
-                {code: '321', message: 'message 321'}
+                {code: '321', message: 'message 321'},
             ];
 
             errs.forEach(function (err) {
@@ -152,7 +152,7 @@ describe('lib/res_extend', () => {
             let key = 'key';
             let errs = [
                 {code: '123', message: 'message 123'},
-                {code: '321', message: 'message 321'}
+                {code: '321', message: 'message 321'},
             ];
 
             errs.forEach(function (err) {
@@ -359,7 +359,7 @@ describe('lib/res_extend', () => {
         extended_middleware(req, res, () => {
             let members = [
                 {id: 1, name: 'John'},
-                {id: 2, name: 'Jane'}
+                {id: 2, name: 'Jane'},
             ];
 
             res.data({members}).send();
@@ -409,17 +409,17 @@ describe('lib/res_extend', () => {
         extended_middleware(req, res, () => {
             let members = [
                 {id: 1, name: 'John'},
-                {id: 2, name: 'Jane'}
+                {id: 2, name: 'Jane'},
             ];
             let data = {
                 members: [
-                    {id: 3, name: 'Joe'}
-                ]
+                    {id: 3, name: 'Joe'},
+                ],
             };
             let expected_result = [
                 {id: 1, name: 'John'},
                 {id: 2, name: 'Jane'},
-                {id: 3, name: 'Joe'}
+                {id: 3, name: 'Joe'},
             ];
 
             res.data({members})
@@ -459,13 +459,13 @@ describe('lib/res_extend', () => {
             let key = 'members';
             let members = [
                 {id: 1, name: 'John'},
-                {id: 2, name: 'Jane'}
+                {id: 2, name: 'Jane'},
             ];
             let member = {id: 3, name: 'Joe'};
             let expected_result = [
                 {id: 1, name: 'John'},
                 {id: 2, name: 'Jane'},
-                {id: 3, name: 'Joe'}
+                {id: 3, name: 'Joe'},
             ];
 
 
@@ -504,7 +504,7 @@ describe('lib/res_extend', () => {
         extended_middleware(req, res, () => {
             let items = [
                 {id: 1, name: 'John'},
-                {id: 2, name: 'Jane'}
+                {id: 2, name: 'Jane'},
             ];
 
             res.items(items)
@@ -555,13 +555,13 @@ describe('lib/res_extend', () => {
         extended_middleware(req, res, () => {
             let items = [
                 {id: 1, name: 'John'},
-                {id: 2, name: 'Jane'}
+                {id: 2, name: 'Jane'},
             ];
             let item = {id: 3, name: 'Joe'};
             let expected_result = [
                 {id: 1, name: 'John'},
                 {id: 2, name: 'Jane'},
-                {id: 3, name: 'Joe'}
+                {id: 3, name: 'Joe'},
             ];
 
             res.items(items)

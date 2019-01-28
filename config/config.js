@@ -16,13 +16,13 @@ const config = {
         CORS:  {
             allowed_headers: 'Access-Token, X-Requested-With, Content-Type, Accept',
             allowed_origins: '*',
-            allowed_methods: 'GET, POST, PUT, OPTIONS, DELETE'
+            allowed_methods: 'GET, POST, PUT, OPTIONS, DELETE',
         },
 
         UPLOAD_DIR: path.normalize(__dirname + '/../uploads/'),
         ASSETS_DIR: path.normalize(__dirname + '/../assets'),
         VIEWS_DIR: path.normalize(__dirname + '/../views'),
-        LOGS_DIR: path.normalize(__dirname + '/../logs')
+        LOGS_DIR: path.normalize(__dirname + '/../logs'),
 
     },
 
@@ -32,8 +32,8 @@ const config = {
             host: 'localhost',
             user: 'root',
             password: '',
-            database: 'test'
-        }
+            database: 'test',
+        },
     },
 
     use: (env) => {
@@ -51,7 +51,7 @@ const config = {
         let merged_config = _.reduce(config, (a, b) => _.merge(a, b), {});
 
         return _.merge(merged_config, config);
-    }
+    },
 };
 
 if (!process.env.NODE_ENV) {

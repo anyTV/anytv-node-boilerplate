@@ -29,7 +29,7 @@ describe('Util', () => {
                 required2: 0,
                 required3: 3,
                 optional: 4,
-                optional1: 5
+                optional1: 5,
             }
         );
 
@@ -38,7 +38,7 @@ describe('Util', () => {
         data.should.eql({
             required: 1,
             required2: 0,
-            optional: 4
+            optional: 4,
         });
 
         done();
@@ -51,7 +51,7 @@ describe('Util', () => {
                 required2: 2,
                 required3: 3,
                 optional: 4,
-                optional1: 5
+                optional1: 5,
             }
         );
 
@@ -64,7 +64,7 @@ describe('Util', () => {
                 required2: {a: {}},
                 required3: 3,
                 optional: 4,
-                optional1: 5
+                optional1: 5,
             }
         );
 
@@ -76,11 +76,11 @@ describe('Util', () => {
                 required: 1,
                 required2: {
                     a: 0,
-                    b: ['', 1]
+                    b: ['', 1],
                 },
                 required3: 3,
                 optional: 4,
-                optional1: 5
+                optional1: 5,
             }
         );
 
@@ -94,14 +94,14 @@ describe('Util', () => {
             {required: 0, required2: 0, _optional: 1},
             {
                 required: 1,
-                required2: 2
+                required2: 2,
             }
         );
 
         data.should.be.an('object');
         data.should.eql({
             required: 1,
-            required2: 2
+            required2: 2,
         });
 
         done();

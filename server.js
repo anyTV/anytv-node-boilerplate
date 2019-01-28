@@ -65,5 +65,5 @@ handler = start();
 module.exports = {
     app,
     start,
-    handler
+    handler,
 };
