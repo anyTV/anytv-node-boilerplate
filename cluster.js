@@ -7,22 +7,22 @@ let temp = numCPUs;
 let dead = 0;
 
 if (cluster.isMaster) {
-	if (!process.argv[2]) {
-		console.log('Script to cluster is missing');
-	}
+    if (!process.argv[2]) {
+        console.log('Script to cluster is missing');
+    }
 
-	console.log(new Date());
+    console.log(new Date());
 
     while (temp--) {
-        cluster.fork({cpu_number : temp});
+        cluster.fork({cpu_number: temp});
     }
 }
 else {
-	require(__dirname + '/' + process.argv[2]);
+    require(__dirname + '/' + process.argv[2]);
 }
 
 cluster.on('exit', worker => {
-	worker.kill();
+    worker.kill();
 
     if (++dead === numCPUs) {
         console.log(new Date());

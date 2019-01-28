@@ -2,7 +2,7 @@
 
 const util = require(process.cwd() + '/helpers/util');
 
-
+const _ = require('lodash');
 
 describe('Util', () => {
 
@@ -184,7 +184,7 @@ describe('Util', () => {
 
 
     it('util.split should split an array into <n> parts', done => {
-        const array = util.split([,,,,,,,,,,,], 3);
+        const array = util.split(_.range(12), 3);
 
         array.should.be.an('array');
         array.length.should.equal(3);

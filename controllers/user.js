@@ -33,6 +33,7 @@ exports.get_user = function (req, res, next) {
 
         if (err) {
             winston.error('Error in selecting users', last_query);
+
             return next(err);
         }
 
