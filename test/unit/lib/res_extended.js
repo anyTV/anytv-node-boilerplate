@@ -7,7 +7,7 @@ const extended  = require(process.cwd() + '/lib/res_extended');
 
 describe('lib/res_extend', () => {
 
-    it('should add method limit to res', (done) => {
+    it('should add method limit to res', done => {
         let res = httpMocks.createResponse();
         let req = httpMocks.createRequest({});
         let extended_middleware = extended();
@@ -19,7 +19,7 @@ describe('lib/res_extend', () => {
         });
     });
 
-    it('res.limit should set data.limit', (done) => {
+    it('res.limit should set data.limit', done => {
         let res = httpMocks.createResponse();
         let req = httpMocks.createRequest({});
         let extended_middleware = extended();
@@ -39,7 +39,7 @@ describe('lib/res_extend', () => {
 
     });
 
-    it('res.limit(limit) limit should be type number', (done) => {
+    it('res.limit(limit) limit should be type number', done => {
         let res = httpMocks.createResponse();
         let req = httpMocks.createRequest({});
         let extended_middleware = extended();
@@ -54,7 +54,7 @@ describe('lib/res_extend', () => {
 
     });
 
-    it('should add method total to res', (done) => {
+    it('should add method total to res', done => {
         let res = httpMocks.createResponse();
         let req = httpMocks.createRequest({});
         let extended_middleware = extended();
@@ -66,7 +66,7 @@ describe('lib/res_extend', () => {
         });
     });
 
-    it('res.total should set data.total', (done) => {
+    it('res.total should set data.total', done => {
         let res = httpMocks.createResponse();
         let req = httpMocks.createRequest({});
         let extended_middleware = extended();
@@ -86,7 +86,7 @@ describe('lib/res_extend', () => {
 
     });
 
-    it('res.total(total) total should be type number', (done) => {
+    it('res.total(total) total should be type number', done => {
         let res = httpMocks.createResponse();
         let req = httpMocks.createRequest({});
         let extended_middleware = extended();
@@ -101,7 +101,7 @@ describe('lib/res_extend', () => {
 
     });
 
-    it('should add method error to res', (done) => {
+    it('should add method error to res', done => {
         let res = httpMocks.createResponse();
         let req = httpMocks.createRequest({});
         let extended_middleware = extended();
@@ -113,7 +113,7 @@ describe('lib/res_extend', () => {
         });
     });
 
-    it('res.error should add item to errors', (done) => {
+    it('res.error should add item to errors', done => {
         let res = httpMocks.createResponse();
         let req = httpMocks.createRequest({});
         let extended_middleware = extended();
@@ -143,7 +143,7 @@ describe('lib/res_extend', () => {
         });
     });
 
-    it('res.error should accept (key, value)', (done) => {
+    it('res.error should accept (key, value)', done => {
         let res = httpMocks.createResponse();
         let req = httpMocks.createRequest({});
         let extended_middleware = extended();
@@ -171,7 +171,7 @@ describe('lib/res_extend', () => {
         });
     });
 
-    it('res.error(key, value) key should be type string', (done) => {
+    it('res.error(key, value) key should be type string', done => {
         let res = httpMocks.createResponse();
         let req = httpMocks.createRequest({});
         let extended_middleware = extended();
@@ -184,7 +184,7 @@ describe('lib/res_extend', () => {
         });
     });
 
-    it('res.error(key, value) value should be type object', (done) => {
+    it('res.error(key, value) value should be type object', done => {
         let res = httpMocks.createResponse();
         let req = httpMocks.createRequest({});
         let extended_middleware = extended();
@@ -197,7 +197,7 @@ describe('lib/res_extend', () => {
         });
     });
 
-    it('res.error(key, value) value should have property code', (done) => {
+    it('res.error(key, value) value should have property code', done => {
         let res = httpMocks.createResponse();
         let req = httpMocks.createRequest({});
         let extended_middleware = extended();
@@ -210,7 +210,7 @@ describe('lib/res_extend', () => {
         });
     });
 
-    it('res.error(key, value) value should have property message', (done) => {
+    it('res.error(key, value) value should have property message', done => {
         let res = httpMocks.createResponse();
         let req = httpMocks.createRequest({});
         let extended_middleware = extended();
@@ -223,7 +223,7 @@ describe('lib/res_extend', () => {
         });
     });
 
-    it('should add method meta to res', (done) => {
+    it('should add method meta to res', done => {
         let res = httpMocks.createResponse();
         let req = httpMocks.createRequest({});
         let extended_middleware = extended();
@@ -235,7 +235,7 @@ describe('lib/res_extend', () => {
         });
     });
 
-    it('res.meta should set data.meta', (done) => {
+    it('res.meta should set data.meta', done => {
         let res = httpMocks.createResponse();
         let req = httpMocks.createRequest({});
         let extended_middleware = extended();
@@ -254,7 +254,7 @@ describe('lib/res_extend', () => {
         });
     });
 
-    it('res.meta(meta) meta should be type object', (done) => {
+    it('res.meta(meta) meta should be type object', done => {
         let res = httpMocks.createResponse();
         let req = httpMocks.createRequest({});
         let extended_middleware = extended();
@@ -268,7 +268,7 @@ describe('lib/res_extend', () => {
         });
     });
 
-    it('res.meta(meta) meta should have property code', (done) => {
+    it('res.meta(meta) meta should have property code', done => {
         let res = httpMocks.createResponse();
         let req = httpMocks.createRequest({});
         let extended_middleware = extended();
@@ -282,7 +282,7 @@ describe('lib/res_extend', () => {
         });
     });
 
-    it('should add method warn to res', (done) => {
+    it('should add method warn to res', done => {
         let res = httpMocks.createResponse();
         let req = httpMocks.createRequest({});
         let extended_middleware = extended();
@@ -295,7 +295,7 @@ describe('lib/res_extend', () => {
         });
     });
 
-    it('res.warn should default to status 400', (done) => {
+    it('res.warn should default to status 400', done => {
         let res = httpMocks.createResponse();
         let req = httpMocks.createRequest({});
         let extended_middleware = extended();
@@ -310,7 +310,7 @@ describe('lib/res_extend', () => {
         });
     });
 
-    it('res.send should return json if res_extended method was called', (done) => {
+    it('res.send should return json if res_extended method was called', done => {
         let res = httpMocks.createResponse();
         let req = httpMocks.createRequest({});
         let extended_middleware = extended();
@@ -322,7 +322,7 @@ describe('lib/res_extend', () => {
     });
 
 
-    it('res.send should return data if passed', (done) => {
+    it('res.send should return data if passed', done => {
         let res = httpMocks.createResponse();
         let req = httpMocks.createRequest({});
         let extended_middleware = extended();
@@ -338,7 +338,7 @@ describe('lib/res_extend', () => {
         });
     });
 
-    it('should add method data to res', (done) => {
+    it('should add method data to res', done => {
         let res = httpMocks.createResponse();
         let req = httpMocks.createRequest({});
         let extended_middleware = extended();
@@ -351,7 +351,7 @@ describe('lib/res_extend', () => {
         });
     });
 
-    it('res.data should add data[key]', (done) => {
+    it('res.data should add data[key]', done => {
         let res = httpMocks.createResponse();
         let req = httpMocks.createRequest({});
         let extended_middleware = extended();
@@ -374,7 +374,7 @@ describe('lib/res_extend', () => {
         });
     });
 
-    it('res.data should be type object', (done) => {
+    it('res.data should be type object', done => {
         let res = httpMocks.createResponse();
         let req = httpMocks.createRequest({});
         let extended_middleware = extended();
@@ -388,7 +388,7 @@ describe('lib/res_extend', () => {
         });
     });
 
-    it('should add method datum to res', (done) => {
+    it('should add method datum to res', done => {
         let res = httpMocks.createResponse();
         let req = httpMocks.createRequest({});
         let extended_middleware = extended();
@@ -401,7 +401,7 @@ describe('lib/res_extend', () => {
         });
     });
 
-    it('res.datum  should append to data[key]', (done) => {
+    it('res.datum  should append to data[key]', done => {
         let res = httpMocks.createResponse();
         let req = httpMocks.createRequest({});
         let extended_middleware = extended();
@@ -436,7 +436,7 @@ describe('lib/res_extend', () => {
         });
     });
 
-    it('res.datum(key, value) key should be type string', (done) => {
+    it('res.datum(key, value) key should be type string', done => {
         let res = httpMocks.createResponse();
         let req = httpMocks.createRequest({});
         let extended_middleware = extended();
@@ -450,7 +450,7 @@ describe('lib/res_extend', () => {
         });
     });
 
-    it('res.datum should accept (key, item)', (done) => {
+    it('res.datum should accept (key, item)', done => {
         let res = httpMocks.createResponse();
         let req = httpMocks.createRequest({});
         let extended_middleware = extended();
@@ -483,7 +483,7 @@ describe('lib/res_extend', () => {
         });
     });
 
-    it('should add method items to res', (done) => {
+    it('should add method items to res', done => {
         let res = httpMocks.createResponse();
         let req = httpMocks.createRequest({});
         let extended_middleware = extended();
@@ -496,7 +496,7 @@ describe('lib/res_extend', () => {
         });
     });
 
-    it('res.items should set data.items', (done) => {
+    it('res.items should set data.items', done => {
         let res = httpMocks.createResponse();
         let req = httpMocks.createRequest({});
         let extended_middleware = extended();
@@ -520,7 +520,7 @@ describe('lib/res_extend', () => {
         });
     });
 
-    it('res.items(items) items should be type array', (done) => {
+    it('res.items(items) items should be type array', done => {
         let res = httpMocks.createResponse();
         let req = httpMocks.createRequest({});
         let extended_middleware = extended();
@@ -534,7 +534,7 @@ describe('lib/res_extend', () => {
         });
     });
 
-    it('should add method item to res', (done) => {
+    it('should add method item to res', done => {
         let res = httpMocks.createResponse();
         let req = httpMocks.createRequest({});
         let extended_middleware = extended();
@@ -547,7 +547,7 @@ describe('lib/res_extend', () => {
         });
     });
 
-    it('res.item  should append to data.items', (done) => {
+    it('res.item  should append to data.items', done => {
         let res = httpMocks.createResponse();
         let req = httpMocks.createRequest({});
         let extended_middleware = extended();

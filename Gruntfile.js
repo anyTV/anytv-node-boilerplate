@@ -1,7 +1,7 @@
 'use strict';
 
 
-module.exports = (grunt) => {
+module.exports = grunt => {
 
     grunt.initConfig({
         eslint: {

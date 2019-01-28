@@ -4,7 +4,7 @@ const importer = require('anytv-node-importer');
 
 
 
-module.exports = (router) => {
+module.exports = router => {
     const __ = importer.dirloadSync(__dirname + '/../controllers');
 
     router.del = router.delete;

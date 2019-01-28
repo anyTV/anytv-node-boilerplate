@@ -36,7 +36,7 @@ const config = {
         },
     },
 
-    use: (env) => {
+    use: env => {
 
         _.merge(config, importer.dirloadSync(__dirname + '/env/' + env));
 

@@ -6,13 +6,13 @@ const util = require(process.cwd() + '/helpers/util');
 
 describe('Util', () => {
 
-    it('util.hash should hash the string in sha1 by default', (done) => {
+    it('util.hash should hash the string in sha1 by default', done => {
         util.hash('randomsamplestring').should.equal('0d470913cf5cc7190cd5efe404c53f0bb8496321');
         done();
     });
 
 
-    it('util.hash should hash the string in md5', (done) => {
+    it('util.hash should hash the string in md5', done => {
         util.hash('randomsamplestring', 'md5').should.equal('3f12bc2adefa12cc2744a7a85891cca8');
         done();
     });
@@ -21,7 +21,7 @@ describe('Util', () => {
 
 
 
-    it('util.get_data should strip excess payload', (done) => {
+    it('util.get_data should strip excess payload', done => {
         const data = util.get_data(
             {required: 0, required2: 0, _optional: 1},
             {
@@ -44,7 +44,7 @@ describe('Util', () => {
         done();
     });
 
-    it('util.get_data should tell what\'s missing', (done) => {
+    it('util.get_data should tell what\'s missing', done => {
         let data = util.get_data(
             {required: 0, required2: 0, _optional: 1},
             {
@@ -89,7 +89,7 @@ describe('Util', () => {
         done();
     });
 
-    it('util.get_data should not care if optional parameter is missing', (done) => {
+    it('util.get_data should not care if optional parameter is missing', done => {
         const data = util.get_data(
             {required: 0, required2: 0, _optional: 1},
             {
@@ -111,7 +111,7 @@ describe('Util', () => {
 
 
 
-    it('util.random_string should return a string with length 32', (done) => {
+    it('util.random_string should return a string with length 32', done => {
         const string = util.random_string();
 
         string.should.be.a('string');
@@ -120,7 +120,7 @@ describe('Util', () => {
         done();
     });
 
-    it('util.random_string should return a string with length given in the argument', (done) => {
+    it('util.random_string should return a string with length given in the argument', done => {
         const string = util.random_string(5);
 
         string.should.be.a('string');
@@ -133,7 +133,7 @@ describe('Util', () => {
 
 
 
-    it('util.pad should pad by 2 by default', (done) => {
+    it('util.pad should pad by 2 by default', done => {
         const string = util.pad(5);
 
         string.should.be.a('string');
@@ -143,7 +143,7 @@ describe('Util', () => {
         done();
     });
 
-    it('util.pad should pad the number by <2nd parameter>', (done) => {
+    it('util.pad should pad the number by <2nd parameter>', done => {
         const string = util.pad(5, 5);
 
         string.should.be.a('string');
@@ -157,7 +157,7 @@ describe('Util', () => {
 
 
 
-    it('util.to_title_case should title-ize a string', (done) => {
+    it('util.to_title_case should title-ize a string', done => {
         const string = util.to_title_case('im a title');
 
         string.should.be.a('string');
@@ -170,7 +170,7 @@ describe('Util', () => {
 
 
 
-    it('util.caps_first should capitalize a string', (done) => {
+    it('util.caps_first should capitalize a string', done => {
         const string = util.caps_first('im a title');
 
         string.should.be.a('string');
@@ -183,7 +183,7 @@ describe('Util', () => {
 
 
 
-    it('util.split should split an array into <n> parts', (done) => {
+    it('util.split should split an array into <n> parts', done => {
         const array = util.split([,,,,,,,,,,,], 3);
 
         array.should.be.an('array');
@@ -196,7 +196,7 @@ describe('Util', () => {
 
 
 
-    it('util.clone should clone an object', (done) => {
+    it('util.clone should clone an object', done => {
         const obj = {};
         const obj2 = obj;
         const clone = util.clone(obj);

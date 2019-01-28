@@ -21,7 +21,7 @@ else {
 	require(__dirname + '/' + process.argv[2]);
 }
 
-cluster.on('exit', (worker) => {
+cluster.on('exit', worker => {
 	worker.kill();
 
     if (++dead === numCPUs) {
