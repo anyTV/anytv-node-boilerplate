@@ -13,7 +13,7 @@ after('close server', function () {
 });
 
 describe('User', () => {
-    it('should get one user', (done) => {
+    it('should get one user', done => {
         api.get('/user/cf9fcb1f-8fea-499a-b58f-c69576a11cd5')
             .expect(200)
             .end((err, res) => {
@@ -25,17 +25,17 @@ describe('User', () => {
             });
     });
 
-    it('should return 404', (done) => {
+    it('should return 404', done => {
         api.get('/user/wrong_id')
             .expect(404)
-            .end((err) => {
+            .end(err => {
                 should.not.exist(err);
 
                 done();
             });
     });
 
-    it('should contain errors', (done) => {
+    it('should contain errors', done => {
         api.get('/user/wrong_id')
             .end((err, res) => {
 

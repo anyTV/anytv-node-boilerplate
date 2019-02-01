@@ -14,7 +14,7 @@ winston.remove(winston.transports.Console);
 winston.add(winston.transports.Console, {
     level: config.app.LOG_LEVEL || 'silly',
     colorize: true,
-    timestamp: stamp
+    timestamp: stamp,
 });
 
 
@@ -25,7 +25,7 @@ winston.add(winston.transports.File,{
     timestamp: stamp,
     colorize: false,
     level: 'warn',
-    json: false
+    json: false,
 });
 
 
@@ -37,7 +37,7 @@ module.exports = new (winston.Logger)({
             dirname: config.app.LOGS_DIR,
             filename: 'access',
             colorize: false,
-            json: false
-        })
-    ]
+            json: false,
+        }),
+    ],
 });

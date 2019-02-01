@@ -1,23 +1,24 @@
 'use strict';
 
 
-module.exports = (grunt) => {
+module.exports = grunt => {
 
     grunt.initConfig({
-        jshint: {
-            files: [
+        eslint: {
+            src: [
                 'Gruntfile.js',
                 'server.js',
+                'cluster.js',
                 'config/**/*.js',
                 'controllers/**/*.js',
                 'helpers/**/*.js',
                 'lib/**/*.js',
                 'models/**/*.js',
-                'test/**/*.js'
+                'test/**/*.js',
             ],
             options: {
-                jshintrc: '.jshintrc'
-            }
+                configFile: '.eslintrc',
+            },
         },
 
         mochaTest: {
@@ -27,56 +28,56 @@ module.exports = (grunt) => {
                     reporter: 'spec',
                     timeout: 5000,
                     clearRequireCache: true,
-                }
-            }
+                },
+            },
         },
 
         express: {
             dev: {
                 options: {
-                    script: 'server.js'
-                }
-            }
+                    script: 'server.js',
+                },
+            },
         },
 
         watch: {
             express: {
-                files: ['<%= jshint.files %>'],
-                tasks: ['jshint', 'express'],
+                files: ['<%= eslint.src %>'],
+                tasks: ['eslint', 'express'],
                 options: {
                     spawn: false,
                 },
             },
             test: {
-                files: ['<%= jshint.files %>'],
-                tasks: ['jshint', 'mochaTest'],
+                files: ['<%= eslint.src %>'],
+                tasks: ['eslint', 'mochaTest'],
                 options: {
                     spawn: false,
                 },
-            }
+            },
         },
 
         env: {
             dev: {
-                NODE_ENV: 'development'
+                NODE_ENV: 'development',
             },
             prod: {
-                NODE_ENV: 'production'
+                NODE_ENV: 'production',
             },
             test: {
-                NODE_ENV: 'test'
-            }
-        }
+                NODE_ENV: 'test',
+            },
+        },
     });
 
-    grunt.loadNpmTasks('grunt-contrib-jshint');
+    grunt.loadNpmTasks('gruntify-eslint');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-express-server');
     grunt.loadNpmTasks('grunt-mocha-test');
     grunt.loadNpmTasks('grunt-env');
 
-    grunt.registerTask('test', ['env:test', 'jshint', 'mochaTest']);
-    grunt.registerTask('dev-tests', ['env:dev', 'jshint', 'mochaTest', 'watch:test']);
-    grunt.registerTask('default', ['env:dev', 'jshint', 'express', 'watch:express']);
+    grunt.registerTask('test', ['env:test', 'eslint', 'mochaTest']);
+    grunt.registerTask('dev-tests', ['env:dev', 'eslint', 'mochaTest', 'watch:test']);
+    grunt.registerTask('default', ['env:dev', 'eslint', 'express', 'watch:express']);
 
 };
