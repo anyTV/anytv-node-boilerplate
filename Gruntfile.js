@@ -18,6 +18,7 @@ module.exports = grunt => {
             ],
             options: {
                 configFile: '.eslintrc',
+                fix: grunt.option('fix'),
             },
         },
 

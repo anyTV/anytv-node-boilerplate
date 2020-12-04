@@ -7,7 +7,7 @@
     "anytv-node-cors": "0.0.7",
     "anytv-node-error-handler": "0.0.10",
     "anytv-node-importer": "0.0.7",
-    "anytv-node-mysql": "0.0.52",
+    "anytv-node-mysql": "0.0.57",
     "app-module-path": "^2.2.0",
     "body-parser": "^1.16.0",
     "compression": "^1.6.2",
@@ -21,9 +21,10 @@
     "winston-daily-rotate-file": "^1.4.3"
   },
   "scripts": {
-    "dev-server": "grunt",
+    "dev": "grunt",
     "test": "grunt test",
     "dev-tests": "grunt dev-tests",
+    "format": "grunt eslint --fix",
     "coverage": "unset NODE_ENV && istanbul cover _mocha -- --recursive -R spec -t 5000 -s 100",
     "docs": "apidoc -i controllers -o apidoc/"
   },

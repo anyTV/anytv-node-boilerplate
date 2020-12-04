@@ -4,7 +4,7 @@
         "json"
     ],
     "parserOptions": {
-        "ecmaVersion": 2017,
+        "ecmaVersion": 2018,
         "sourceType": "script",
         "impliedStrict": true
     },
@@ -25,6 +25,10 @@
         ],
         "comma-dangle": [
             "warn",
+            {
+                "arrays": "always-multiline",
+                "objects": "always-multiline",
+            },
             "only-multiline"
         ],
         "curly": [
@@ -100,7 +104,7 @@
         "no-shadow": "error",
         "no-sparse-arrays": "error",
         "no-undef": "error",
-        "no-unused-vars": "error",
+        "no-unused-vars": "warn",
         "no-useless-escape": "warn",
         "no-use-before-define": [
             "warn",
