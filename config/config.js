@@ -4,6 +4,10 @@ const importer = require('anytv-node-importer');
 const _    = require('lodash');
 const path = require('path');
 
+if (!process.env.NODE_ENV) {
+    process.env.NODE_ENV = 'development';
+}
+
 const config = {
 
     // can be overridden by ${env}/app.js
@@ -38,7 +42,8 @@ const config = {
 
     use: env => {
 
-        _.merge(config, importer.dirloadSync(__dirname + '/env/' + env));
+        const env_config = importer.dirloadSync(__dirname + '/env/' + env)
+        _.merge(config, env_config);
 
         /**
          *  supports previous way of accessing config by
@@ -48,9 +53,9 @@ const config = {
          *
          *  done via merging all keys in one object
          */
-        let merged_config = _.reduce(config, (a, b) => _.merge(a, b), {});
+        let merged_config = _.reduce(env_config, (a, b) => _.merge(a, b), {});
 
-        return _.merge(merged_config, config);
+        return _.merge(config, merged_config);
     },
 };
 
