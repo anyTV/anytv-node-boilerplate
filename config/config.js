@@ -26,6 +26,38 @@ const config = {
 
     },
 
+    FREEDOM: {
+        base_url: 'https://dev.freedom.tm',
+        client_id: 'ee8364da-3826-4c98-870f-b72129edb7d5',
+        client_secret: '0d546ef4-8cb5-4ff2-8a16-4a916edd17b8',
+        //Since the boilerplate will be the template for every project, is this okay to be named "Freedom Tool Service"?
+        user_agent: 'Freedom Tool Service',
+        endpoints: {
+            OAUTH_ACCESS_TOKEN: '/oauth/access_token',
+        }
+    },
+
+    ACCOUNTS_API: {
+        base_url: 'https://accounts.freedom.tm/api/v2',
+        client_id: 'ad08dcbd-845b-415f-8cb4-7bbb0b32fbc7',
+        client_secret: '7b594211-9a73-4770-9450-d870c7eeb4db',
+        scopes: {
+            DASHBOARD: {
+                USER: ['https://www.freedom.tm/auth/user'],
+                USER_READONLY: ['https://www.freedom.tm/auth/user.readonly'],
+                ROLES_READONLY: ['https://www.freedom.tm/auth/roles.readonly'],
+                PERMISSION_READONLY: ['https://www.freedom.tm/auth/permission.readonly'],
+                ROLES: ['https://www.freedom.tm/auth/roles'],
+            },
+        }
+    },
+
+    CUDL: {
+        rejectUnauthorized: false
+    },
+
+    JWT_FIELDS: ['name', 'user_id', 'freedom_id', 'email'],
+
     // can be overridden by ${env}/database.js
     database: {
         LOCAL_DB: {
