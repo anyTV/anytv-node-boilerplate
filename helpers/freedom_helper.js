@@ -17,6 +17,7 @@ const DASHBOARD_SCOPES = config.ACCOUNTS_API.scopes.DASHBOARD;
 
 
 module.exports = {
+    get_user_information,
     get_oauth_access_token
 };
 
@@ -34,4 +35,15 @@ async function get_oauth_access_token(params) {
         .send(params)
         .promise();
 
+}
+
+function get_user_information({ user_id, access_token }) {
+    let url = `${base_url}${endpoints.USER_INFORMATION}${(user_id ? `/${user_id}` : '')}`;
+
+    return cudl.get
+        .set_header('User-Agent', user_agent)
+        .set_opts('rejectUnauthorized', rejectUnauthorized)
+        .to(`${url}?access_token=${access_token}`)
+        .send()
+        .promise();
 }

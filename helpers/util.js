@@ -147,6 +147,12 @@ function clone (obj) {
     return JSON.parse(JSON.stringify(obj));
 }
 
+function has_method (obj, name) {
+    const desc = Object.getOwnPropertyDescriptor (obj, name);
+
+    return !!desc && typeof desc.value === 'function';
+}
+
 
 
 module.exports = {
@@ -158,4 +164,5 @@ module.exports = {
     caps_first,
     split,
     clone,
+    has_method
 };

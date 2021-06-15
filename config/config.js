@@ -33,7 +33,8 @@ const config = {
         //Since the boilerplate will be the template for every project, is this okay to be named "Freedom Tool Service"?
         user_agent: 'Freedom Tool Service',
         endpoints: {
-            OAUTH_ACCESS_TOKEN: '/oauth/access_token',
+            USER_INFORMATION: '/v1/api/user',
+            OAUTH_ACCESS_TOKEN: '/oauth/access_token'
         }
     },
 
@@ -57,6 +58,19 @@ const config = {
     },
 
     JWT_FIELDS: ['name', 'user_id', 'freedom_id', 'email'],
+
+    JWT: {
+        ALGO: 'HS256',
+        SECRET: 'b87c1fc1-2023-11eb-8ecc-7824af44c1d1',
+        EXPIRATION: 60 * 60 * 24 * 30 * 7, // expires in 7 days
+    },
+
+    REDIS: {
+        host: '127.0.0.1',
+        port: 6379,
+        //The prefix is to follow
+        prefix: ''
+    },
 
     // can be overridden by ${env}/database.js
     database: {
