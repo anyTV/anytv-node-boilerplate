@@ -10,7 +10,8 @@ const jwt = require('lib/jwt');
 const responses = require('lib/responses');
 
 module.exports = {
-    login
+    login,
+    logout
 };
 
 async function login (req) {
@@ -43,4 +44,13 @@ async function login (req) {
             access_token,
         }
     };
+}
+
+async function logout (req) {
+    const user = req.auth.user();
+    const token = req.auth.token();
+
+    await jwt.remove(user.user_id, token);
+
+    return responses.LOGGED_OUT;
 }
