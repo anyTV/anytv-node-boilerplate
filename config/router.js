@@ -10,6 +10,7 @@ module.exports = router => {
     router.del = router.delete;
 
     router.get('/user/:id', __.user.get_user);
+    router.get('/api/auth/login', __.auth.login);
 
     router.all('*', (req, res) => {
         res.status(404)
