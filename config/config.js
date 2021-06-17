@@ -27,9 +27,9 @@ const config = {
     },
 
     FREEDOM: {
-        base_url: 'https://dev.freedom.tm',
-        client_id: 'ee8364da-3826-4c98-870f-b72129edb7d5',
-        client_secret: '0d546ef4-8cb5-4ff2-8a16-4a916edd17b8',
+        base_url: '',
+        client_id: '',
+        client_secret: '',
         //Since the boilerplate will be the template for every project, is this okay to be named "Freedom Tool Service"?
         user_agent: 'Freedom Tool Service',
         endpoints: {
@@ -39,16 +39,16 @@ const config = {
     },
 
     ACCOUNTS_API: {
-        base_url: 'https://accounts.freedom.tm/api/v2',
-        client_id: 'ad08dcbd-845b-415f-8cb4-7bbb0b32fbc7',
-        client_secret: '7b594211-9a73-4770-9450-d870c7eeb4db',
+        base_url: '',
+        client_id: '',
+        client_secret: '',
         scopes: {
             DASHBOARD: {
-                USER: ['https://www.freedom.tm/auth/user'],
-                USER_READONLY: ['https://www.freedom.tm/auth/user.readonly'],
-                ROLES_READONLY: ['https://www.freedom.tm/auth/roles.readonly'],
-                PERMISSION_READONLY: ['https://www.freedom.tm/auth/permission.readonly'],
-                ROLES: ['https://www.freedom.tm/auth/roles'],
+                USER: [''],
+                USER_READONLY: [''],
+                ROLES_READONLY: [''],
+                PERMISSION_READONLY: [''],
+                ROLES: [''],
             },
         }
     },
@@ -60,8 +60,8 @@ const config = {
     JWT_FIELDS: ['name', 'user_id', 'freedom_id', 'email'],
 
     JWT: {
-        ALGO: 'HS256',
-        SECRET: 'b87c1fc1-2023-11eb-8ecc-7824af44c1d1',
+        ALGO: '',
+        SECRET: '',
         EXPIRATION: 60 * 60 * 24 * 30 * 7, // expires in 7 days
     },
 
