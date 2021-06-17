@@ -1,6 +1,7 @@
 'use strict';
 
 const cudl = require('cuddle');
+const winston = require('winston');
 const config = require('config/config');
 const accounts = require('freedom-accounts-util');
 
@@ -31,6 +32,7 @@ async function get_oauth_access_token(params) {
         ({access_token} = await accounts.generate_token(DASHBOARD_SCOPES.USER_READONLY));
     }
     catch (err) {
+        winston.error(err);
     }
 
     return cudl.post
