@@ -24,7 +24,14 @@ async function login (req) {
     };
 
     const validated_data = await validate(data, rules);
-    const oauth_response = await FreedomHelper.get_oauth_access_token(validated_data);
+    let oauth_response = {};
+
+    try {
+        oauth_response = await FreedomHelper.get_oauth_access_token(validated_data);
+    }
+    catch (err) {
+        throw new AuthorizationError(responses.OAUTH_ERROR);
+    }
 
     if (!oauth_response.access_token) {
         throw new AuthorizationError(responses.OAUTH_ERROR);

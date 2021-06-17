@@ -10,6 +10,8 @@ const express     = require('express');
 const winston     = require('winston');
 const morgan      = require('morgan');
 
+const accounts = require('freedom-accounts-util');
+
 let handler;
 let app;
 
@@ -27,6 +29,9 @@ function start () {
     // set config
     config.use(process.env.NODE_ENV);
     app.set('env', config.app.ENV);
+
+    // configure accounts-util
+    accounts.configure(config.ACCOUNTS_API);
 
     // configure mysql
     mysql.set_logger(winston)

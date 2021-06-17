@@ -25,7 +25,13 @@ async function get_oauth_access_token(params) {
     params.client_id = client_id;
     params.client_secret = client_secret;
 
-    const { access_token } = await accounts.generate_token(DASHBOARD_SCOPES.USER_READONLY);
+    let access_token;
+
+    try {
+        ({access_token} = await accounts.generate_token(DASHBOARD_SCOPES.USER_READONLY));
+    }
+    catch (err) {
+    }
 
     return cudl.post
         .set_header('Authorization', `bearer ${access_token}`)
