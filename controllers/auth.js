@@ -41,6 +41,10 @@ async function login (req) {
         access_token: oauth_response.access_token
     });
 
+    if (!user_info) {
+        throw new Error('No user info found');
+    }
+
     const user = new User(user_info);
     const access_token = await jwt.generate(user.get_jwt_fields());
 

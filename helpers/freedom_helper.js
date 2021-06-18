@@ -1,7 +1,6 @@
 'use strict';
 
 const cudl = require('cuddle');
-const winston = require('winston');
 const config = require('config/config');
 const accounts = require('freedom-accounts-util');
 
@@ -22,27 +21,20 @@ module.exports = {
     get_oauth_access_token
 };
 
-async function get_oauth_access_token(params) {
+function get_oauth_access_token(params) {
     params.client_id = client_id;
     params.client_secret = client_secret;
 
-    let access_token;
-
-    try {
-        ({access_token} = await accounts.generate_token(DASHBOARD_SCOPES.USER_READONLY));
-    }
-    catch (err) {
-        winston.error(err);
-    }
-
-    return cudl.post
-        .set_header('Authorization', `bearer ${access_token}`)
-        .set_header('User-Agent', user_agent)
-        .set_opts('rejectUnauthorized', rejectUnauthorized)
-        .to(`${base_url}${endpoints.OAUTH_ACCESS_TOKEN}`)
-        .send(params)
-        .promise();
-
+    return accounts.generate_token(DASHBOARD_SCOPES.USER_READONLY)
+        .then(({access_token}) => {
+            return cudl.post
+                .set_header('Authorization', `bearer ${access_token}`)
+                .set_header('User-Agent', user_agent)
+                .set_opts('rejectUnauthorized', rejectUnauthorized)
+                .to(`${base_url}${endpoints.OAUTH_ACCESS_TOKEN}`)
+                .send(params)
+                .promise();
+        });
 }
 
 function get_user_information({ user_id, access_token }) {
