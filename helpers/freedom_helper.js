@@ -1,6 +1,7 @@
 'use strict';
 
-const cudl = require('cuddle');
+const Axios = require('axios');
+const https = require('https');
 const config = require('config/config');
 const accounts = require('freedom-accounts-util');
 
@@ -27,23 +28,39 @@ function get_oauth_access_token(params) {
 
     return accounts.generate_token(DASHBOARD_SCOPES.USER_READONLY)
         .then(({access_token}) => {
-            return cudl.post
-                .set_header('Authorization', `bearer ${access_token}`)
-                .set_header('User-Agent', user_agent)
-                .set_opts('rejectUnauthorized', rejectUnauthorized)
-                .to(`${base_url}${endpoints.OAUTH_ACCESS_TOKEN}`)
-                .send(params)
-                .promise();
+            const url = `${base_url}${endpoints.OAUTH_ACCESS_TOKEN}`;
+            const options = {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `bearer ${access_token}`,
+                    'User-Agent': user_agent
+                },
+                httpsAgent: new https.Agent({
+                    rejectUnauthorized: rejectUnauthorized
+                })
+            };
+
+            return Axios.post(
+                url,
+                params,
+                options
+            );
         });
 }
 
 function get_user_information({ user_id, access_token }) {
     let url = `${base_url}${endpoints.USER_INFORMATION}${(user_id ? `/${user_id}` : '')}`;
+    const options = {
+        headers: {
+            'User-Agent': user_agent
+        },
+        httpsAgent: new https.Agent({
+            rejectUnauthorized: rejectUnauthorized
+        })
+    };
 
-    return cudl.get
-        .set_header('User-Agent', user_agent)
-        .set_opts('rejectUnauthorized', rejectUnauthorized)
-        .to(`${url}?access_token=${access_token}`)
-        .send()
-        .promise();
+    return Axios.get(
+        `${url}?access_token=${access_token}`,
+        options
+    );
 }
