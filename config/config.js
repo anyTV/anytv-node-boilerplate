@@ -53,9 +53,11 @@ const config = {
         }
     },
 
-    CUDL: {
+    AXIOS: {
         rejectUnauthorized: false
     },
+
+    VALIDATION_ERROR: 'VALIDATION ERROR',
 
     JWT_FIELDS: ['name', 'user_id', 'freedom_id', 'email'],
 

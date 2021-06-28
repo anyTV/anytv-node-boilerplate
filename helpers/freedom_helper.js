@@ -5,7 +5,7 @@ const https = require('https');
 const config = require('config/config');
 const accounts = require('freedom-accounts-util');
 
-const { rejectUnauthorized } = config.CUDL;
+const { rejectUnauthorized } = config.AXIOS;
 const {
     base_url,
     client_id,
