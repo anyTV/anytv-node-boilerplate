@@ -26,26 +26,24 @@ async function get_oauth_access_token(params) {
     params.client_id = client_id;
     params.client_secret = client_secret;
 
-    return await accounts.generate_token(DASHBOARD_SCOPES.USER_READONLY)
-        .then(async ({access_token}) => {
-            const url = `${base_url}${endpoints.OAUTH_ACCESS_TOKEN}`;
-            const options = {
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `bearer ${access_token}`,
-                    'User-Agent': user_agent
-                },
-                httpsAgent: new https.Agent({
-                    rejectUnauthorized: rejectUnauthorized
-                })
-            };
+    const { access_token } = await accounts.generate_token(DASHBOARD_SCOPES.USER_READONLY);
+    const url = `${base_url}${endpoints.OAUTH_ACCESS_TOKEN}`;
+    const options = {
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `bearer ${access_token}`,
+            'User-Agent': user_agent
+        },
+        httpsAgent: new https.Agent({
+            rejectUnauthorized: rejectUnauthorized
+        })
+    };
 
-            return await Axios.post(
-                url,
-                params,
-                options
-            );
-        });
+    return await Axios.post(
+        url,
+        params,
+        options
+    );
 }
 
 async function get_user_information({ user_id, access_token }) {
