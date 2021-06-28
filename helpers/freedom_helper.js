@@ -22,12 +22,12 @@ module.exports = {
     get_oauth_access_token
 };
 
-function get_oauth_access_token(params) {
+async function get_oauth_access_token(params) {
     params.client_id = client_id;
     params.client_secret = client_secret;
 
-    return accounts.generate_token(DASHBOARD_SCOPES.USER_READONLY)
-        .then(({access_token}) => {
+    return await accounts.generate_token(DASHBOARD_SCOPES.USER_READONLY)
+        .then(async ({access_token}) => {
             const url = `${base_url}${endpoints.OAUTH_ACCESS_TOKEN}`;
             const options = {
                 headers: {
@@ -40,7 +40,7 @@ function get_oauth_access_token(params) {
                 })
             };
 
-            return Axios.post(
+            return await Axios.post(
                 url,
                 params,
                 options
@@ -48,7 +48,7 @@ function get_oauth_access_token(params) {
         });
 }
 
-function get_user_information({ user_id, access_token }) {
+async function get_user_information({ user_id, access_token }) {
     let url = `${base_url}${endpoints.USER_INFORMATION}${(user_id ? `/${user_id}` : '')}`;
     const options = {
         headers: {
@@ -59,7 +59,7 @@ function get_user_information({ user_id, access_token }) {
         })
     };
 
-    return Axios.get(
+    return await Axios.get(
         `${url}?access_token=${access_token}`,
         options
     );
