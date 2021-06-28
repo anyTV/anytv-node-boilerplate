@@ -47,7 +47,8 @@ async function get_oauth_access_token(params) {
 }
 
 async function get_user_information({ user_id, access_token }) {
-    let url = `${base_url}${endpoints.USER_INFORMATION}${(user_id ? `/${user_id}` : '')}`;
+    let url = `${base_url}${endpoints.USER_INFORMATION}${(user_id ? `/${user_id}` : '')}?access_token=${access_token}`;
+    const params = { user_id };
     const options = {
         headers: {
             'User-Agent': user_agent
@@ -58,7 +59,8 @@ async function get_user_information({ user_id, access_token }) {
     };
 
     return await Axios.get(
-        `${url}?access_token=${access_token}`,
+        url,
+        { params },
         options
     );
 }
