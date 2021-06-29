@@ -47,11 +47,12 @@ async function get_oauth_access_token(params) {
 }
 
 async function get_user_information({ user_id, access_token }) {
-    let url = `${base_url}${endpoints.USER_INFORMATION}${(user_id ? `/${user_id}` : '')}?access_token=${access_token}`;
+    let url = `${base_url}${endpoints.USER_INFORMATION}${(user_id ? `/${user_id}` : '')}`;
     const params = { user_id };
     const options = {
         headers: {
-            'User-Agent': user_agent
+            'User-Agent': user_agent,
+            'access-token': access_token
         },
         httpsAgent: new https.Agent({
             rejectUnauthorized: rejectUnauthorized
