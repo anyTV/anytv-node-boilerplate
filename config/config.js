@@ -31,7 +31,7 @@ const config = {
         client_id: '',
         client_secret: '',
         //Since the boilerplate will be the template for every project, is this okay to be named "Freedom Tool Service"?
-        user_agent: 'Freedom Tool Service',
+        user_agent: 'Admin Tool Service',
         endpoints: {
             USER_INFORMATION: '/v1/api/user',
             OAUTH_ACCESS_TOKEN: '/oauth/access_token'
