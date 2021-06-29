@@ -3,6 +3,7 @@
 const importer = require('anytv-node-importer');
 const _    = require('lodash');
 const path = require('path');
+const pjson = require('package.json');
 
 const config = {
 
@@ -30,8 +31,7 @@ const config = {
         base_url: '',
         client_id: '',
         client_secret: '',
-        //Since the boilerplate will be the template for every project, is this okay to be named "Freedom Tool Service"?
-        user_agent: 'Admin Tool Service',
+        user_agent: `${pjson.name}-${pjson.version}`,
         endpoints: {
             USER_INFORMATION: '/v1/api/user',
             OAUTH_ACCESS_TOKEN: '/oauth/access_token'
@@ -64,7 +64,7 @@ const config = {
     JWT: {
         ALGO: '',
         SECRET: '',
-        EXPIRATION: 60 * 60 * 24 * 30 * 7, // expires in 7 days
+        EXPIRATION: 60 * 60, // expires in 1 hour
     },
 
     REDIS: {

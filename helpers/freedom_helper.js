@@ -15,6 +15,11 @@ const {
 } = config.FREEDOM;
 
 const DASHBOARD_SCOPES = config.ACCOUNTS_API.scopes.DASHBOARD;
+let new_axios = Axios.create({
+    httpsAgent: new https.Agent({
+        rejectUnauthorized: rejectUnauthorized
+    })
+});
 
 
 module.exports = {
@@ -33,13 +38,10 @@ async function get_oauth_access_token(params) {
             'Content-Type': 'application/json',
             'Authorization': `bearer ${access_token}`,
             'User-Agent': user_agent
-        },
-        httpsAgent: new https.Agent({
-            rejectUnauthorized: rejectUnauthorized
-        })
+        }
     };
 
-    return await Axios.post(
+    return await new_axios.post(
         url,
         params,
         options
@@ -53,13 +55,10 @@ async function get_user_information({ user_id, access_token }) {
         headers: {
             'User-Agent': user_agent,
             'access-token': access_token
-        },
-        httpsAgent: new https.Agent({
-            rejectUnauthorized: rejectUnauthorized
-        })
+        }
     };
 
-    return await Axios.get(
+    return await new_axios.get(
         url,
         { params },
         options
