@@ -1,6 +1,6 @@
 'use strict';
 
-const { validate } = require('indicative').validator;
+const indicative = require('indicative');
 const { AuthorizationError } = require('errors');
 
 const FreedomHelper = require('helpers/freedom_helper');
@@ -23,22 +23,22 @@ async function login (req) {
         grant_type: 'required|string'
     };
 
-    const validated_data = await validate(data, rules);
+    const validated_data = await indicative.validate(data, rules);
     let oauth_response = await FreedomHelper.get_oauth_access_token(validated_data);
 
-    if (!oauth_response.access_token) {
+    if (!oauth_response.data.access_token) {
         throw new AuthorizationError(responses.OAUTH_ERROR);
     }
 
     const user_info = await FreedomHelper.get_user_information({
-        access_token: oauth_response.access_token
+        access_token: oauth_response.data.access_token
     });
 
     if (!user_info) {
         throw new Error('No user info found');
     }
 
-    const user = new User(user_info);
+    const user = new User(user_info.data);
     const access_token = await jwt.generate(user.get_jwt_fields());
 
     return {
