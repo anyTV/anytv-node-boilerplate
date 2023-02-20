@@ -1,18 +1,16 @@
 'use strict';
 
+const _ = require('lodash');
 const crypto = require('crypto');
 
 /**
     Utilities
 */
-
 function hash (string, algo) {
     return crypto.createHash(algo || 'sha1')
         .update('' + string)
         .digest('hex');
 }
-
-
 
 
 /**
@@ -96,6 +94,7 @@ function validate_primitive_value (_sample, prop, _source, source_prop, _ref) {
     return _source[source_prop];
 }
 
+
 function random_string (i) {
     const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 
@@ -147,12 +146,21 @@ function clone (obj) {
     return JSON.parse(JSON.stringify(obj));
 }
 
+
 function has_method (obj, name) {
     const desc = Object.getOwnPropertyDescriptor (obj, name);
 
     return !!desc && typeof desc.value === 'function';
 }
 
+
+function wrap_if_not_array(value) {
+    return _.chain(value)
+        .castArray()
+        .compact()
+        .uniq()
+        .value();
+}
 
 
 module.exports = {
@@ -164,5 +172,6 @@ module.exports = {
     caps_first,
     split,
     clone,
-    has_method
+    has_method,
+    wrap_if_not_array
 };

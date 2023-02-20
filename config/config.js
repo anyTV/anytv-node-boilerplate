@@ -84,6 +84,11 @@ const config = {
         },
     },
 
+    REPOSITORY: {
+        chunk_insert_size: 1000,
+        parallel_limit: 1
+    },
+
     use: env => {
 
         _.merge(config, importer.dirloadSync(__dirname + '/env/' + env));
