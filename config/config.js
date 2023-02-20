@@ -75,13 +75,18 @@ const config = {
     },
 
     // can be overridden by ${env}/database.js
-    database: {
+    DATABASE: {
         LOCAL_DB: {
             host: 'localhost',
             user: 'root',
             password: '',
             database: 'test',
         },
+    },
+
+    REPOSITORY: {
+        chunk_insert_size: 1000,
+        parallel_limit: 1
     },
 
     use: env => {
