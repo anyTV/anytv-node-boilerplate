@@ -1,16 +1,14 @@
 'use strict';
 
 require('app-module-path/register');
+const bootstrap = require('./bootstrap');
 
-const mysql       = require('anytv-node-mysql');
 const logger      = require('helpers/logger');
 const config      = require('config/config');
 const body_parser = require('body-parser');
 const express     = require('express');
 const winston     = require('winston');
 const morgan      = require('morgan');
-
-const accounts = require('freedom-accounts-util');
 
 let handler;
 let app;
@@ -30,16 +28,7 @@ function start () {
     config.use(process.env.NODE_ENV);
     app.set('env', config.app.ENV);
 
-    // configure accounts-util
-    accounts.configure(config.ACCOUNTS_API);
-
-    // configure mysql
-    mysql.set_logger(winston)
-        .add('my_db', config.database.LOCAL_DB, true);
-
-
     winston.info('Starting', config.app.APP_NAME, 'on', config.app.ENV, 'environment');
-    winston.info('DB:', config.database.LOCAL_DB.host);
 
     // configure express app
     app.set('case sensitive routing', true);
@@ -65,7 +54,16 @@ function start () {
     return app.listen(config.app.PORT);
 }
 
-handler = start();
+function init() {
+    return Promise.all(bootstrap)
+        .then(start)
+        .catch(err => {
+            winston.error(err);
+            process.exit(1);
+        });
+}
+
+init();
 
 module.exports = {
     app,

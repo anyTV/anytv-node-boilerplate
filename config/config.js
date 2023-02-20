@@ -75,7 +75,7 @@ const config = {
     },
 
     // can be overridden by ${env}/database.js
-    database: {
+    DATABASE: {
         LOCAL_DB: {
             host: 'localhost',
             user: 'root',
